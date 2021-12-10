@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEditor;
 using EzySlice;
 
+// ref:
+// https://github.com/DavidArayan/ezy-slice
+
 public class Slicer : MonoBehaviour
 {
 	public Material crossSectionMaterial;
 	TextureRegion textureRegion;
 
 	public float thrust = 100f;
-	float timeToWait = 0;
+	public float waitingTime = 0.5f;
+	float timer = 0;
 
 	void Update()
 	{
-		timeToWait -= Time.deltaTime;
-		timeToWait = Mathf.Max(0, timeToWait);
+		timer -= Time.deltaTime;
+		timer = Mathf.Max(0, timer);
 	}
 
 
@@ -40,15 +44,15 @@ public class Slicer : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (timeToWait == 0)
+		if (timer == 0)
 		{
 			Slice(other.gameObject);
-			DisableSliceFor(2f);
+			DisableSliceFor(waitingTime);
 		}
 	}
 
 	void DisableSliceFor(float amount)
 	{
-		timeToWait = Mathf.Max(timeToWait, amount);
+		timer = Mathf.Max(timer, amount);
 	}
 }
