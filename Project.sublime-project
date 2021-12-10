@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"file_exclude_patterns":
+			[
+				"*.sln",
+				"*.csproj",
+				"*.vsconfig",
+			],
+			"folder_exclude_patterns":
+			[
+				"Library",
+				"Logs",
+				"Temp",
+				"UserSettings",
+				"obj",
+				"Workfiles",
+			],
+		}
+	]
+}
