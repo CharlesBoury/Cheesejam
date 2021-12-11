@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public int cuttingState = 0;
 	Vector2 moveBy;
 
+	public AudioClip audioClip;
+
 	static int id = 0;
 	Vector3 startPos;
 
@@ -96,6 +98,9 @@ public class PlayerController : MonoBehaviour
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, target, Time.deltaTime * cutSpeed);
 			float angle = Quaternion.Angle(transform.rotation, target);
 			if(angle < 0.01f) {
+				if(cuttingState == 1) {
+					AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
+				}
 				cuttingState = (cuttingState + 1)%3;
 			}
 		}
