@@ -13,7 +13,35 @@ public class PlayerController : MonoBehaviour
 	public int cuttingState = 0;
 	Vector2 moveBy;
 
+	static int id = 0;
+	Vector3 startPos;
+
+	void Start()
+	{
+		
+	}
+
 	public void OnEnable() {
+
+		transform.Rotate(id * 90.0f, 0.0f, 0.0f);
+		switch (id)
+		{
+			case 0:
+				startPos = new Vector3(-0.25f, 0.15f, 0.2f);
+				break;
+			case 1:
+				startPos = new Vector3(0.25f, 0.15f, 0.2f);
+				break;
+			case 2:
+				startPos = new Vector3(-0.25f, 0.15f, -0.2f);
+				break;
+			case 3:
+				startPos = new Vector3(0.25f, 0.15f, -0.2f);
+				break;
+		}
+		transform.position = startPos;
+		id++;
+
 		initQuaternion = transform.rotation;
 		targetQuaternion = initQuaternion * Quaternion.AngleAxis (maxAngle, Vector3.up); 
 	}
@@ -37,10 +65,20 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		transform.position = new Vector3(
+		float radius = 0.1f;
+
+		
+		Vector3 newPos = new Vector3(
 			transform.position.x + moveBy.x,
 			transform.position.y,
 			transform.position.z + moveBy.y);
+		float distance = Vector3.Distance(newPos, startPos);
+		if (distance <= radius)
+        {
+			//newPos *= radius / distance;
+			transform.position = newPos;
+		}
+		
 
 		if(cuttingState > 0) {
 			// Convert the X angle target into a quaternion: to maxAngle or initialAngle
