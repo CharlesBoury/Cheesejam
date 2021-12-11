@@ -23,20 +23,23 @@ public class PlayerController : MonoBehaviour
 
 	public void OnEnable() {
 
-		transform.Rotate(id * 90.0f, 0.0f, 0.0f);
 		switch (id)
 		{
 			case 0:
 				startPos = new Vector3(-0.25f, 0.15f, 0.2f);
+				transform.Rotate(0f, 0.0f, 0.0f);
 				break;
 			case 1:
 				startPos = new Vector3(0.25f, 0.15f, 0.2f);
+				transform.Rotate(90f, 0.0f, 0.0f);
 				break;
 			case 2:
 				startPos = new Vector3(-0.25f, 0.15f, -0.2f);
+				transform.Rotate(-90f, 0.0f, 0.0f);
 				break;
 			case 3:
 				startPos = new Vector3(0.25f, 0.15f, -0.2f);
+				transform.Rotate(180f, 0.0f, 0.0f);
 				break;
 		}
 		transform.position = startPos;
