@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput_A",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Player",
@@ -44,6 +44,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8e7dd757-d748-4637-995a-5344cd22408e",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -55,11 +66,33 @@
                 },
                 {
                     "name": "",
+                    "id": "f4e3202c-8117-4d5e-a79c-55f4b607aa55",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Cut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6a5283cd-dd56-4446-b37b-c4842f833e73",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Pick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "884bd923-02af-49da-807c-93c4df9ab0cc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Pick",
                     "isComposite": false,
                     "isPartOfComposite": false
