@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Tourniquet : MonoBehaviour
 {
-    float speed;
+    public float speed = 1f;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1f;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         speed += Time.deltaTime;
-        transform.Rotate(0f, Time.deltaTime * speed, 0f);
+        rb.AddTorque(0f, Time.deltaTime * speed, 0f);
     }
 }
