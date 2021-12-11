@@ -129,3 +129,4 @@ MonoBehaviour:
   hardness: 1.51
   density: 1
   cuttable: 1
+  fallAudio: {fileID: 8300000, guid: 7b7b79f4456f93d41be93d6b533bb949, type: 3}

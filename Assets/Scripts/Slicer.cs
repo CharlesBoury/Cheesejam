@@ -32,6 +32,8 @@ public class Slicer : MonoBehaviour
 		slices = go.SliceInstantiate(transform.position, transform.up, textureRegion, crossSectionMaterial);
 		Debug.Log(slices);
 
+		Cheese originalCheese = go.GetComponent<Cheese>();
+
 		foreach(GameObject slice in slices)
 		{
 			slice.AddComponent<MeshCollider>();
@@ -41,15 +43,23 @@ public class Slicer : MonoBehaviour
 			slice.GetComponent<Rigidbody>().AddForce(transform.up * thrust * (Random.value > 0.5f ? 1f : -1f));
 
 			slice.AddComponent<Cheese>();
-			Cheese cheese = slice.GetComponent<Cheese>();
 			float volume = getVolume(slice);
-			if(volume > minCuttableVolume) {
-				cheese.cuttable = true;
-			} else {
-				Debug.Log("Volume of cheese is below cuttable threshold" + volume);
-			}
+			updateNewCheese(slice.GetComponent<Cheese>(), originalCheese, volume); 
+			
 		}
-			Destroy(go);
+		Destroy(go);
+	}
+
+	private void updateNewCheese(Cheese newCheese, Cheese originalCheese, float volume) 
+	{
+		newCheese.hardness = originalCheese.hardness;
+		newCheese.density = originalCheese.density;
+		newCheese.fallAudio = originalCheese.fallAudio;
+		if(volume > minCuttableVolume) {
+			newCheese.cuttable = true;
+		} else {
+			Debug.Log("Volume of cheese is below cuttable threshold" + volume);
+		}
 	}
 
 	private float getVolume(GameObject go)
