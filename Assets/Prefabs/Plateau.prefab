@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8000197317756968441}
   - component: {fileID: 8000197317756968438}
   - component: {fileID: 8000197317756968439}
+  - component: {fileID: 5175707098431115216}
+  - component: {fileID: 8759354241150924948}
   m_Layer: 0
   m_Name: Plateau
   m_TagString: Untagged
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8000197317756968436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 32, y: 0.256, z: 32}
+  m_LocalScale: {x: 0.5, y: 0.0025, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,7 +96,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &8000197317756968439
@@ -109,3 +111,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dca21278780bfd4b93b3d3ce0810fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5175707098431115216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000197317756968436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9d7afb95504436a9eb9473e050af72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabList:
+  - {fileID: 9045933700229307824, guid: 09eaa32221e6d44ab80531703f3f5cbf, type: 3}
+  - {fileID: 4149684001062952534, guid: 5f1a3a3511bb94ede84eb59603b8a8ff, type: 3}
+--- !u!54 &8759354241150924948
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000197317756968436}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
