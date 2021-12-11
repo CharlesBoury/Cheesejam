@@ -18,17 +18,23 @@ public class CheeseSpawner : MonoBehaviour
 	public float minDistanceFromCenter = 0.2f;
     [Range(0f, 0.5f)]
 	public float minDistanceFromEdge = 0.2f;
-	[Range(0f, 1f)]
 
+	[Range(0f, 1f)]
 	public float fallingDistance = 0.0001f;
 	
 	[Range(0f, 1f)]
 	public float spawnTimeDelta = 0.01f;
-
+	
 	public bool regular = true;
-
 	private float lastDropped = -1f;
 	private float radius;
+	public Transform height;
+
+	void OnEnable()
+	{
+		if (height == null)
+			height = transform;
+	}
 
 	void InstantiateRandomCheese(Vector3 pos, float angle) {
         int cheeseIndex = Random.Range(0, cheeseList.Count);
@@ -53,7 +59,7 @@ public class CheeseSpawner : MonoBehaviour
 			radius = Random.Range(minDistanceFromCenter, (transform.localScale.x / 2) - minDistanceFromEdge);
 		float x = Mathf.Cos(angle) * radius;
 		float z = Mathf.Sin(angle) * radius;
-		InstantiateRandomCheese(new Vector3(transform.position.x + x, transform.position.y + transform.localScale.y + fallingDistance, transform.position.z + z), angle);
+		InstantiateRandomCheese(new Vector3(height.position.x + x, height.position.y + fallingDistance, height.position.z + z), angle);
 		nbCheesesDropped++;
 	}
 

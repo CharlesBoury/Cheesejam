@@ -127,4 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hardness: 1.51
   density: 1
-  cutable: 1
+  cuttable: 1
