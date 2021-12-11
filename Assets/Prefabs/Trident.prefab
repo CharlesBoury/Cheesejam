@@ -49,6 +49,7 @@ MonoBehaviour:
   maxAngle: -40
   cutSpeed: 100
   cuttingState: 0
+  audioClip: {fileID: 8300000, guid: 7a6b599c10c581349bf50df4b3a519b9, type: 3}
 --- !u!114 &2545859757844449331
 MonoBehaviour:
   m_ObjectHideFlags: 0
