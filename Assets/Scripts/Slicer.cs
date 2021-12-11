@@ -62,7 +62,8 @@ public class Slicer : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (timer == 0)
+		Debug.Log("collision!");
+		if (timer < 0.01f)
 		{
 			Cheese cheese = other.GetComponent<Cheese>();
  			if (cheese) {

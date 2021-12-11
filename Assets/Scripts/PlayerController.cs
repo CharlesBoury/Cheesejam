@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
 	public float maxAngle = -40f;
 	private Quaternion targetQuaternion;
 	private Quaternion initQuaternion;
-	public float cutSpeed = 100.0f;
+	public float animationTime = 1.0f;
+	private float curTime = 0.0f;
 	public int cuttingState = 0;
 	Vector2 moveBy;
 
@@ -90,14 +91,20 @@ public class PlayerController : MonoBehaviour
 			Quaternion target;
 			if(cuttingState == 1){
 				target = targetQuaternion;
+				
 			} else {
 				target = initQuaternion;
 			}
 
 			// Dampen towards the target rotation
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, target, Time.deltaTime * cutSpeed);
-			float angle = Quaternion.Angle(transform.rotation, target);
-			if(angle < 0.01f) {
+			curTime += Time.deltaTime;
+			float t = curTime / animationTime;
+			Quaternion deltaRotation = Quaternion.Slerp(transform.rotation, target, t); 
+			GetComponent<Rigidbody>().MoveRotation(deltaRotation); 
+			//Quaternion.AngleAxis (maxAngle, Vector3.up); 
+			
+			if(t > 1.0f) {
+				curTime = 0.0f;
 				if(cuttingState == 1) {
 					AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
 				}
