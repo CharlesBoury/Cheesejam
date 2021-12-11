@@ -11,23 +11,21 @@ public class PlayerController : MonoBehaviour
 	private Quaternion initQuaternion;
 	public float cutSpeed = 100.0f;
 	public int cuttingState = 0;
+	Vector2 moveBy;
 
 	public void OnEnable() {
 		initQuaternion = transform.rotation;
 		targetQuaternion = initQuaternion * Quaternion.AngleAxis (maxAngle, Vector3.up); 
 	}
+
 	public void OnPick()
 	{
+		moveBy = Vector2.zero;
 	}
 
 	public void OnMove(InputValue value)
 	{
-		Vector2 moveBy = value.Get<Vector2>() * moveSpeed;
-
-		transform.position = new Vector3(
-			transform.position.x + moveBy.x,
-			transform.position.y,
-			transform.position.z + moveBy.y);
+		moveBy = value.Get<Vector2>() * moveSpeed;
 	}
 
 	public void OnCut()
@@ -39,6 +37,11 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+		transform.position = new Vector3(
+			transform.position.x + moveBy.x,
+			transform.position.y,
+			transform.position.z + moveBy.y);
+
 		if(cuttingState > 0) {
 			// Convert the X angle target into a quaternion: to maxAngle or initialAngle
 			Quaternion target;
