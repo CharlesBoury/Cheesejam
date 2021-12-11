@@ -134,25 +134,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plateau
       objectReference: {fileID: 0}
-    - target: {fileID: 8000197317756968439, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
-      propertyPath: speed
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8000197317756968443, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8000197317756968443, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8000197317756968443, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.0025
-      objectReference: {fileID: 0}
-    - target: {fileID: 8000197317756968443, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8000197317756968443, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226993143}
   - component: {fileID: 226993142}
+  - component: {fileID: 226993144}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -270,6 +255,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226993144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226993141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9d7afb95504436a9eb9473e050af72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cheeseList:
+  - {fileID: 4149684001062952534, guid: 5f1a3a3511bb94ede84eb59603b8a8ff, type: 3}
+  - {fileID: 9045933700229307824, guid: 09eaa32221e6d44ab80531703f3f5cbf, type: 3}
+  nbCheesesAtStart: 10
+  minDistanceFromCenter: 0.2
+  minDistanceFromEdge: 0.2
+  regular: 1
 --- !u!1 &653260035
 GameObject:
   m_ObjectHideFlags: 0
