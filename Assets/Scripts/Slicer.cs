@@ -46,8 +46,14 @@ public class Slicer : MonoBehaviour
 	{
 		if (timer == 0)
 		{
-			Slice(other.gameObject);
-			DisableSliceFor(waitingTime);
+			Cheese cheese = other.GetComponent<Cheese>();
+ 			if (cheese) {
+				Slice(other.gameObject);
+				DisableSliceFor(waitingTime);
+			}
+			else {
+				Debug.Log(other);
+			}
 		}
 	}
 
