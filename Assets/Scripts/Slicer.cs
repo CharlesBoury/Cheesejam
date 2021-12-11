@@ -14,7 +14,7 @@ public class Slicer : MonoBehaviour
 
 	public float thrust = 100f;
 	public float waitingTime = 0.5f;
-	public float minCuttableVolume = 0.1f;
+	public float minCuttableVolume = 1f; // in cm3
 	float timer = 0;
 
 	void Update()
@@ -24,12 +24,13 @@ public class Slicer : MonoBehaviour
 	}
 
 
-	void Slice(GameObject go)
+	void SliceThing(GameObject go)
 	{
 		textureRegion = crossSectionMaterial.GetTextureRegion(0, 0, 100, 100);
 		GameObject[] slices;
 
 		slices = go.SliceInstantiate(transform.position, transform.up, textureRegion, crossSectionMaterial);
+		Debug.Log(slices);
 
 		foreach(GameObject slice in slices)
 		{
@@ -55,7 +56,7 @@ public class Slicer : MonoBehaviour
 	{
 		Mesh mesh = go.GetComponent<MeshFilter>().mesh;
 		float volume = mesh.bounds.size.x * mesh.bounds.size.y * mesh.bounds.size.z;
-		return volume;
+		return volume * 1000*1000;
 	}
 
 
@@ -66,12 +67,12 @@ public class Slicer : MonoBehaviour
 			Cheese cheese = other.GetComponent<Cheese>();
  			if (cheese) {
 				if(cheese.cuttable) {	 
-					Slice(other.gameObject);
+					SliceThing(other.gameObject);
 					DisableSliceFor(waitingTime);
 				}
 			}
 			else {
-				Debug.Log(other);
+				Debug.Log("no cut");
 			}
 		}
 	}

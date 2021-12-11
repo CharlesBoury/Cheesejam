@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28502673, g: 0.37139347, b: 0.49600998, a: 1}
+  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -558,13 +558,5 @@ PrefabInstance:
       propertyPath: cheeseObject
       value: 
       objectReference: {fileID: 824538027}
-    - target: {fileID: 9009534156304453358, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
-      propertyPath: fallingDistance
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9009534156304453358, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
-      propertyPath: nbCheesesToDrop
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}

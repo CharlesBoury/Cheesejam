@@ -42,7 +42,6 @@ public class CheeseSpawner : MonoBehaviour
 		Instantiate(original, pos, Quaternion.Euler(0, - angle * Mathf.Rad2Deg, 0), cheeseObject.transform);
 	}
 
-    // Start is called before the first frame update
     void Start()
     {
 		radius = Random.Range(minDistanceFromCenter, (transform.localScale.x / 2) - minDistanceFromEdge);
