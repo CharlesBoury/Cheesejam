@@ -14,6 +14,7 @@ public class Slicer : MonoBehaviour
 
 	public float thrust = 100f;
 	public float waitingTime = 0.5f;
+	public float minCuttableVolume = 0.1f;
 	float timer = 0;
 
 	void Update()
@@ -37,8 +38,24 @@ public class Slicer : MonoBehaviour
 
 			slice.AddComponent<Rigidbody>();
 			slice.GetComponent<Rigidbody>().AddForce(transform.up * thrust * (Random.value > 0.5f ? 1f : -1f));
+
+			slice.AddComponent<Cheese>();
+			Cheese cheese = slice.GetComponent<Cheese>();
+			float volume = getVolume(slice);
+			if(volume > minCuttableVolume) {
+				cheese.cuttable = true;
+			} else {
+				Debug.Log("Volume of cheese is below cuttable threshold" + volume);
+			}
 		}
 			Destroy(go);
+	}
+
+	private float getVolume(GameObject go)
+	{
+		Mesh mesh = go.GetComponent<MeshFilter>().mesh;
+		float volume = mesh.bounds.size.x * mesh.bounds.size.y * mesh.bounds.size.z;
+		return volume;
 	}
 
 
@@ -48,8 +65,10 @@ public class Slicer : MonoBehaviour
 		{
 			Cheese cheese = other.GetComponent<Cheese>();
  			if (cheese) {
-				Slice(other.gameObject);
-				DisableSliceFor(waitingTime);
+				if(cheese.cuttable) {	 
+					Slice(other.gameObject);
+					DisableSliceFor(waitingTime);
+				}
 			}
 			else {
 				Debug.Log(other);
