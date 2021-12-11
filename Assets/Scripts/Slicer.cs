@@ -14,7 +14,9 @@ public class Slicer : MonoBehaviour
 
 	public float thrust = 100f;
 	public float waitingTime = 0.5f;
-	public float minCuttableVolume = 1f; // in cm3
+	public float minCuttableVolume = 10f; // in cm3
+	public float minMass = 0.02f;
+	public bool isSharp = true;
 	float timer = 0;
 
 	void Update()
@@ -22,7 +24,6 @@ public class Slicer : MonoBehaviour
 		timer -= Time.deltaTime;
 		timer = Mathf.Max(0, timer);
 	}
-
 
 	void SliceThing(GameObject go)
 	{
@@ -33,19 +34,25 @@ public class Slicer : MonoBehaviour
 		Debug.Log(slices);
 
 		Cheese originalCheese = go.GetComponent<Cheese>();
-
+		float sign=1.0f;
 		foreach(GameObject slice in slices)
 		{
 			slice.AddComponent<MeshCollider>();
 			slice.GetComponent<MeshCollider>().convex = true;
 
 			slice.AddComponent<Rigidbody>();
-			slice.GetComponent<Rigidbody>().AddForce(transform.up * thrust * (Random.value > 0.5f ? 1f : -1f));
-
-			slice.AddComponent<Cheese>();
+			Rigidbody rb = slice.GetComponent<Rigidbody>();
 			float volume = getVolume(slice);
-			updateNewCheese(slice.GetComponent<Cheese>(), originalCheese, volume); 
+			rb.mass = volume * originalCheese.density / 1000.0f;
+			if(rb.mass < minMass) {
+				rb.mass = minMass;
+			}
 			
+			slice.AddComponent<Cheese>();
+
+			updateNewCheese(slice.GetComponent<Cheese>(), originalCheese, volume);
+			rb.AddForce(transform.up * thrust * sign);
+			sign = -1.0f;
 		}
 		Destroy(go);
 	}
@@ -73,7 +80,7 @@ public class Slicer : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("collision!");
-		if (timer < 0.01f)
+		if (isSharp && timer <= 0.01f)
 		{
 			Cheese cheese = other.GetComponent<Cheese>();
  			if (cheese) {
