@@ -20,7 +20,6 @@ public class CheeseSpawner : MonoBehaviour
 	}
 	
 	void InstantiateRandomCheese(Vector3 pos, float angle) {
-		Debug.Log(angle);
         int cheeseIndex = UnityEngine.Random.Range(0, cheeseList.Count);
 		Instantiate(cheeseList[cheeseIndex], pos, Quaternion.Euler(0, - angle * Mathf.Rad2Deg, 0));
 	}
