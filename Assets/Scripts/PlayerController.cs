@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	public float animationTime = 1.0f;
 	private float curTime = 0.0f;
 	public int cuttingState = 0;
+	public bool canMoveOnCut = false;
 	Vector2 moveBy;
 
 	public AudioClip audioClip;
@@ -69,11 +70,9 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
-		float radius = 0.1f;
 
-		
+	void updatePos() {
+		float radius = 0.1f;	
 		Vector3 newPos = new Vector3(
 			transform.position.x + moveBy.x,
 			transform.position.y,
@@ -84,9 +83,13 @@ public class PlayerController : MonoBehaviour
 			//newPos *= radius / distance;
 			transform.position = newPos;
 		}
-		
+	}
 
-		if(cuttingState > 0) {
+	void Update()
+	{
+		if (cuttingState == 0 || canMoveOnCut)
+			updatePos();
+		if (cuttingState > 0) {
 			// Convert the X angle target into a quaternion: to maxAngle or initialAngle
 			Quaternion target;
 			if(cuttingState == 1){
