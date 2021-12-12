@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 				transform.Rotate(0f, 135f, 0f);
 				break;
 			case 1:
-				startPos = new Vector3(0.15f, playerHeight, 0.2f);
+				startPos = new Vector3(0.25f, playerHeight, 0.2f);
 				basePos = new Vector2(assietteCoordonnee, assietteCoordonnee);
 				transform.Rotate(0f, -135f, 0f);
 				break;
