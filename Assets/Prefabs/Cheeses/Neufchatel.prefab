@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
       propertyPath: scorePerVolume
-      value: 5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
       propertyPath: crossSectionMaterial
