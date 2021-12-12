@@ -49,7 +49,6 @@ public class CheeseSpawner : MonoBehaviour
 
     void Start()
     {
-		Debug.Log("table radius: " + tableRadius);
 		if (cheeseInTheMiddle)
 			radius = tableRadius / 2f;
 		else
@@ -66,7 +65,6 @@ public class CheeseSpawner : MonoBehaviour
 			angle = Random.Range(0f, 2f * Mathf.PI);
 		if (!regular)
 			radius = Mathf.Max(minDistanceFromCenter, Random.Range(minDistanceFromCenter, (tableRadius - minDistanceFromEdge)));
-		Debug.Log("radius" + radius);
 
 		float x = Mathf.Cos(angle) * radius;
 		float z = Mathf.Sin(angle) * radius;
