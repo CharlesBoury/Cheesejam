@@ -62,10 +62,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e88706d2e63a75f4fb79446a20aa9828, type: 3}
   - {fileID: 8300000, guid: a965394758cbc8142ad7554a9beac027, type: 3}
   youpiSounds:
-  - {fileID: 8300000, guid: b7ddd9f2ab35dc744aed0a92ef84a5c2, type: 3}
-  - {fileID: 8300000, guid: e13e0d3b3758e034a9aadd57240ed57c, type: 3}
-  - {fileID: 8300000, guid: 6f6413ebda469704c924bf30100592c8, type: 3}
-  - {fileID: 8300000, guid: 858313a7c32d5464c9aaf4aecf0f1841, type: 3}
+  - {fileID: 8300000, guid: 42275eac8592a5847be1c40a71b2483e, type: 3}
+  - {fileID: 8300000, guid: eeb44040d03ebc94fb35b0b4113e7e10, type: 3}
+  - {fileID: 8300000, guid: 5adc064443f4f8842ac8cc0a194eb92a, type: 3}
+  - {fileID: 8300000, guid: b2d107b9c8f36fc4e8861c3a3089c136, type: 3}
 --- !u!114 &2545859757844449331
 MonoBehaviour:
   m_ObjectHideFlags: 0
