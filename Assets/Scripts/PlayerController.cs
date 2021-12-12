@@ -18,9 +18,10 @@ public class PlayerController : MonoBehaviour
 {
 	static int idCounter = 0;
 
-	
+
 	public float maxAngle = 40f;
 	public float animationTime = 1.0f;
+	public float collisionRecoilTime = 0.2f;
 	public float floatingSpeed = 10.0f;
 	private float curTime = 0.0f;
 	public float cutSpeed = 100.0f;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
 	private float playerHeight = 0.2f;
 	private Vector3 positionWhenCut;
 	private Vector3 positionWhenPick;
+	private Vector3 positionWhenCollide;
 	private float assietteCoordonnee = 0.36f;
 	private float baseThreshold = 0.2f;
 
@@ -137,10 +139,12 @@ public class PlayerController : MonoBehaviour
 			positionWhenPick = transform.position;
 			state = State.Picking_Up;
 			releaseHold();
+		} else {
+			Debug.Log("starting Collision "+id+ " state: "+state);
+			curTime = 0.0f;
+			positionWhenCollide = transform.position;
+			state = State.Going_Back;
 		}
-		Debug.Log("starting Collision "+id+ " state: "+state);
-		state = State.Going_Back;
-		timer = 0.3f;
 	}
 
 	public void OnMove(InputValue value)
@@ -189,11 +193,19 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (state == State.Going_Back) {
-			if(timer < 0.01f) {
+			// Collision, going back to central position
+			curTime += Time.deltaTime;
+			float t = curTime / collisionRecoilTime;
+
+			Vector3 targetPosition = Vector3.Lerp(positionWhenCollide, startPos, t);
+			GetComponent<Rigidbody>().position = targetPosition;
+			if(t > 1.0f) {
+				curTime = 0.0f;
 				Debug.Log("finished collision");
 				state = State.Moving;
 			}
 		}
+
 		if (state == State.Cutting_Down || state == State.Cutting_Up)
 		{
 			// Dampen towards the target position
