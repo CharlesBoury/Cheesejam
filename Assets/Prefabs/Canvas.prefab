@@ -347,7 +347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933180, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 350.67
+      value: 417.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
+      propertyPath: m_Text
+      value: 123
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -477,7 +481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933180, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 249.9
+      value: 385.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
+      propertyPath: m_Text
+      value: qwe
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -610,6 +618,10 @@ PrefabInstance:
       value: -280.6
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
+      propertyPath: m_Text
+      value: qwef
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 2
       objectReference: {fileID: 0}
@@ -718,6 +730,14 @@ PrefabInstance:
     - target: {fileID: 6786140397849431341, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_Text
       value: Frigg
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793113906803959878, guid: 218b85a7170788645943720940ac4914, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6780c568791458906b267e32efb3eab3, type: 3}
+    - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
+      propertyPath: m_Text
+      value: wqe
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
