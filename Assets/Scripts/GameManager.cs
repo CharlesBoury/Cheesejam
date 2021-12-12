@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 			Cursor.visible = false;
 		}
 		gameTime -= Time.deltaTime;
-		timerText.text = ((int)gameTime).ToString();
+		timerText.text = ((int)gameTime).ToString() + "s";
 	}
 
 	public void AddScore(int score, int id)
