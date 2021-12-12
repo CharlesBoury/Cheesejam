@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 3496764974093618825}
   m_Layer: 0
   m_Name: Cut
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheeses: {fileID: 0}
   thrust: 10
+  smallThrust: 5
   waitingTime: 0.15
   minMass: 0.1
   isSharp: 1
@@ -223,6 +224,7 @@ MonoBehaviour:
   sliceSounds:
   - {fileID: 8300000, guid: 7a6b599c10c581349bf50df4b3a519b9, type: 3}
   - {fileID: 8300000, guid: 4271f42b8a97db741b72da8d97eff625, type: 3}
+  collideSound: {fileID: 8300000, guid: 37c61830c586be345b718d6d23cf08ba, type: 3}
 --- !u!1001 &6755052720443947806
 PrefabInstance:
   m_ObjectHideFlags: 0
