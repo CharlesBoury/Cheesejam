@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 		if(cuttingState == 0)
 		{
 			cuttingState = 1;
+			AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
 			positionWhenCut = transform.position;
 		}
 	}
@@ -116,10 +117,6 @@ public class PlayerController : MonoBehaviour
 			if (t > 1.0f)
 			{
 				curTime = 0.0f;
-				if(cuttingState == 1)
-				{
-					AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
-				}
 				cuttingState = (cuttingState + 1)%3;
 			}
 		}
