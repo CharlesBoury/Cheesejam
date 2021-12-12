@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 	
 	public float maxAngle = 40f;
 	public float animationTime = 1.0f;
+	public float floatingSpeed = 10.0f;
 	private float curTime = 0.0f;
 	public float cutSpeed = 100.0f;
 	public float pickSpeed = 100.0f;
@@ -109,8 +110,10 @@ public class PlayerController : MonoBehaviour
 				Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
 				// freeze position but not rotation
 				rb.constraints = RigidbodyConstraints.FreezePosition;
+				rb.angularVelocity = Random.onUnitSphere * floatingSpeed;
 				child.cuttable = false;
 				child.pickable = false;
+				child.gameObject.GetComponent<MeshCollider>().enabled=false;
 
 				CheeseSpawner cheeseSpawner = GameManager.Instance.GetComponent<CheeseSpawner>();
 				cheeseSpawner.OnRemoveCheese(child.gameObject);
