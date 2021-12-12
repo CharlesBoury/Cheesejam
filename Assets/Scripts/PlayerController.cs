@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	public bool canMoveOnCut = false;
 
 	public int pickingState = 0;
+	public int pickingStateSave = 0;
 	public bool hasPicked = false;
 
 	public AudioClip audioClip;
@@ -24,7 +25,10 @@ public class PlayerController : MonoBehaviour
 	private Vector2 moveBy;
 	private float playerHeight = 0.2f;
 	private Vector3 positionWhenCut;
+	private Vector3 positionWhenPick;
 	static int id = 0;
+
+	public float timer = 0f;
 
 	public void OnEnable() {
 		slicer = GetComponentInChildren<Slicer>();
@@ -54,18 +58,20 @@ public class PlayerController : MonoBehaviour
 
 	public void OnPick()
 	{
-		if (pickingState == 0 && hasPicked == false)
+		if (pickingState == 0 && hasPicked == false && timer <= 0.01f)
 		{
 			pickingState = 1;
+			positionWhenPick = transform.position;
 		}
 		else if (hasPicked == true)
 		{
-			pickingState = 1;
+			pickingState = pickingStateSave;
 			hasPicked = false;
-		}
-		foreach (Cheese child in GetComponentsInChildren<Cheese>())
-		{
-			child.transform.SetParent(null);
+			timer = Mathf.Max(timer, 0.5f);
+			foreach (Cheese child in GetComponentsInChildren<Cheese>())
+			{
+				child.transform.SetParent(null);
+			}
 		}
 			
 	}
@@ -100,7 +106,10 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		if (cuttingState == 0 || canMoveOnCut)
+		timer -= Time.deltaTime;
+		timer = Mathf.Max(0, timer);
+
+		//if (cuttingState == 0 || canMoveOnCut)
 			updatePos();
 
 		// cutting
@@ -138,32 +147,30 @@ public class PlayerController : MonoBehaviour
 
 		if (pickingState > 0)
         {
-			// Convert the X angle target into a quaternion: to maxAngle or initialAngle
-			Quaternion target;
-			if (pickingState == 1)
-			{
-				target = targetQuaternion;
-
-			}
-			else
-			{
-				target = initQuaternion;
-			}
-
-			// Dampen towards the target rotation
+			Vector3 from;
+			Vector3 to;
 			curTime += Time.deltaTime;
 			float t = curTime / animationTime;
-			Quaternion deltaRotation = Quaternion.Slerp(transform.rotation, target, t);
-			GetComponent<Rigidbody>().MoveRotation(deltaRotation);
-			//Quaternion.AngleAxis (maxAngle, Vector3.up); 
+
+			// picking down
+			if (pickingState == 1)
+			{
+				from = positionWhenPick;
+				to = new Vector3(positionWhenPick.x, 0, positionWhenPick.z);
+			}
+			// goind back up
+			else
+			{
+				from = new Vector3(positionWhenPick.x, 0, positionWhenPick.z);
+				to = positionWhenPick;
+			}
+
+			Vector3 targetPosition = Vector3.Lerp(from, to, t);
+			GetComponent<Rigidbody>().position = targetPosition;
 
 			if (t > 1.0f)
 			{
 				curTime = 0.0f;
-				if (pickingState == 1)
-				{
-					AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
-				}
 				pickingState = (pickingState + 1) % 3;
 			}
 		}

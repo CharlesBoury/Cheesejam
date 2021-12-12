@@ -17,7 +17,7 @@ public class Slicer : MonoBehaviour
 	public float waitingTime = 0.5f;
 	public float minCuttableVolume = 10f; // in cm3
 	public float minMass = 0.02f;
-	public bool isSharp = true;
+	public bool isSharp = false;
 	float timer = 0;
 
 	void Update()
@@ -95,12 +95,12 @@ public class Slicer : MonoBehaviour
 		}
 		GameObject trident = transform.parent.gameObject;
 		PlayerController ctrl = trident.GetComponent<PlayerController>();
-		if (ctrl.hasPicked == false && ctrl.pickingState == 1 && cheese.pickable && timer <= 0.01f)
+		if (ctrl.hasPicked == false && ctrl.pickingState == 1 && cheese.pickable && ctrl.timer <= 0.01f)
 		{
 			ctrl.hasPicked = true;
+			ctrl.pickingStateSave = ctrl.pickingState;
 			ctrl.pickingState = 0;
 			PickThing(other.gameObject);
-			DisableSliceFor(waitingTime);
 		}
 	}
 
