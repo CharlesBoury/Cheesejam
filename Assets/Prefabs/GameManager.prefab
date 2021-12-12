@@ -218,7 +218,13 @@ MonoBehaviour:
   cheeseList:
   - {fileID: 4149684001062952534, guid: 5f1a3a3511bb94ede84eb59603b8a8ff, type: 3}
   - {fileID: 9045933700229307824, guid: 09eaa32221e6d44ab80531703f3f5cbf, type: 3}
+  - {fileID: 6357703160373146090, guid: 5eadf19f6dde5ba4bae929c1ebb13a36, type: 3}
   - {fileID: 8140549691224904138, guid: 1ba483699f56ac940a89acd3aef1cc6e, type: 3}
+  - {fileID: 1914698545030823272, guid: 176ff4c114848064b829292027797081, type: 3}
+  - {fileID: 2928819794334752011, guid: d12b3b7e98d865945a264db095c082b4, type: 3}
+  - {fileID: 8696844982399198628, guid: 5670ca827a9a39544b0630a94282e522, type: 3}
+  - {fileID: 3704095854431351073, guid: 65f065d052f89f44b8273111cf434227, type: 3}
+  - {fileID: 993319154037321378, guid: f965aebab7ae6e34293b3b6e09ce7b98, type: 3}
   cheeses: {fileID: 0}
   nbCheesesToDrop: 6
   minDistanceFromCenter: 0.01

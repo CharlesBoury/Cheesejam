@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2341957487988521150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 877682178048756654, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8089699231438940418, guid: 20aad573830fda245b6f0e6887d3e15d, type: 3}
+    - target: {fileID: 1434355115011049872, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8089699231438940418, guid: 20aad573830fda245b6f0e6887d3e15d, type: 3}
+    - target: {fileID: 1434355115011049873, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 708d1af09685ca245a470b643db68ce5, type: 2}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049875, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434355115011049887, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: m_Name
+      value: Neufchatel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: crossSectionMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 708d1af09685ca245a470b643db68ce5, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
