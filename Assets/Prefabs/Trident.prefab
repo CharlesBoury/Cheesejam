@@ -213,12 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c73f704e16170459727ba5ad3e7508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crossSectionMaterial: {fileID: 2100000, guid: 0b6f1dc75ef6b0544b0879ba84a6afd3, type: 2}
   cheeses: {fileID: 0}
-  thrust: 20
+  thrust: 10
   waitingTime: 0.15
-  minCuttableVolume: 0.01
-  minMass: 0.02
+  minCuttableVolume: 10
+  minMass: 0.1
   isSharp: 1
 --- !u!1001 &6755052720443947806
 PrefabInstance:

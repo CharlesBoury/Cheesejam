@@ -11,10 +11,10 @@ public class Slicer : MonoBehaviour
 {
 	public GameObject cheeses;
 
-	public float thrust = 100f;
+	public float thrust = 10f;
 	public float waitingTime = 0.5f;
 	public float minCuttableVolume = 10f; // in cm3
-	public float minMass = 0.02f;
+	public float minMass = 0.1f;
 	public bool isSharp = false;
 	float timer = 0;
 
