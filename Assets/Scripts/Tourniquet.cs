@@ -13,9 +13,16 @@ public class Tourniquet : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		int step = ((int)Time.time) / 10 + 1;
-		Vector3 deltaRotation = new Vector3(0, 1, 0) * Time.fixedDeltaTime * speed * step * step;
+		if (GameManager.Instance.gameTime <= 0)
+		{
+			rb.angularVelocity = Vector3.zero;
+		}
+		else
+		{
+			int step = ((int)Time.time) / 20 + 1;
+			Vector3 deltaRotation = new Vector3(0, 1, 0) * Time.fixedDeltaTime * speed * step * step;
 
-		rb.angularVelocity = deltaRotation;
+			rb.angularVelocity = deltaRotation;
+		}
 	}
 }
