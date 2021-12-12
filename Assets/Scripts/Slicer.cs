@@ -11,6 +11,7 @@ public class Slicer : MonoBehaviour
 {
 	public Material crossSectionMaterial;
 	TextureRegion textureRegion;
+	public GameObject cheeses;
 
 	public float thrust = 100f;
 	public float waitingTime = 0.5f;
@@ -31,7 +32,6 @@ public class Slicer : MonoBehaviour
 		GameObject[] slices;
 
 		slices = go.SliceInstantiate(transform.position, transform.up, textureRegion, crossSectionMaterial);
-		Debug.Log(slices);
 
 		Cheese originalCheese = go.GetComponent<Cheese>();
 		float sign=1.0f;
@@ -62,10 +62,9 @@ public class Slicer : MonoBehaviour
 		newCheese.hardness = originalCheese.hardness;
 		newCheese.density = originalCheese.density;
 		newCheese.fallAudio = originalCheese.fallAudio;
-		if(volume > minCuttableVolume) {
+		newCheese.pickable = true;
+		if (volume > minCuttableVolume) {
 			newCheese.cuttable = true;
-		} else {
-			Debug.Log("Volume of cheese is below cuttable threshold" + volume);
 		}
 	}
 
@@ -76,22 +75,32 @@ public class Slicer : MonoBehaviour
 		return volume * 1000*1000;
 	}
 
+	private void	PickThing(GameObject go)
+    {
+		go.transform.SetParent(transform.parent);
+    }
+
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("collision!");
+		Cheese cheese = other.GetComponent<Cheese>();
+		if (!cheese)
+			return;
 		if (isSharp && timer <= 0.01f)
 		{
-			Cheese cheese = other.GetComponent<Cheese>();
- 			if (cheese) {
-				if(cheese.cuttable) {	 
-					SliceThing(other.gameObject);
-					DisableSliceFor(waitingTime);
-				}
+			if (cheese.cuttable) {	 
+				SliceThing(other.gameObject);
+				DisableSliceFor(waitingTime);
 			}
-			else {
-				Debug.Log("no cut");
-			}
+		}
+		GameObject trident = transform.parent.gameObject;
+		PlayerController ctrl = trident.GetComponent<PlayerController>();
+		if (ctrl.hasPicked == false && ctrl.pickingState == 1 && cheese.pickable && timer <= 0.01f)
+		{
+			ctrl.hasPicked = true;
+			ctrl.pickingState = 0;
+			PickThing(other.gameObject);
+			DisableSliceFor(waitingTime);
 		}
 	}
 

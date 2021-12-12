@@ -7,6 +7,7 @@ public class Cheese : MonoBehaviour
 	public float hardness = 1f;
 	public float density = 1f;
 	public bool cuttable = true;
+	public bool pickable = false;
     public AudioClip fallAudio;
 
 

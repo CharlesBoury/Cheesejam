@@ -8,7 +8,13 @@ public class PlayerController : MonoBehaviour
 	public float moveSpeed = 0.3f;
 	public float maxAngle = 40f;
 	public float animationTime = 1.0f;
+	private float curTime = 0.0f;
+	public float cutSpeed = 100.0f;
+	public float pickSpeed = 100.0f;
 	public int cuttingState = 0;
+	public int pickingState = 0;
+	public bool hasPicked = false;
+
 	public AudioClip audioClip;
 
 	private Slicer slicer;
@@ -16,7 +22,6 @@ public class PlayerController : MonoBehaviour
 	private Quaternion initQuaternion;
 	private Vector3 startPos;
 	private Vector2 moveBy;
-	private float curTime = 0.0f;
 	private float playerHeight = 0.2f;
 	static int id = 0;
 
@@ -52,7 +57,20 @@ public class PlayerController : MonoBehaviour
 
 	public void OnPick()
 	{
-		moveBy = Vector2.zero;
+		if (pickingState == 0 && hasPicked == false)
+		{
+			pickingState = 1;
+		}
+		else if (hasPicked == true)
+		{
+			pickingState = 1;
+			hasPicked = false;
+		}
+		foreach (Cheese child in GetComponentsInChildren<Cheese>())
+		{
+			child.transform.SetParent(null);
+		}
+			
 	}
 
 	public void OnMove(InputValue value)
@@ -126,6 +144,38 @@ public class PlayerController : MonoBehaviour
 					AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
 				}
 				cuttingState = (cuttingState + 1)%3;
+			}
+		}
+
+		if (pickingState > 0)
+        {
+			// Convert the X angle target into a quaternion: to maxAngle or initialAngle
+			Quaternion target;
+			if (pickingState == 1)
+			{
+				target = targetQuaternion;
+
+			}
+			else
+			{
+				target = initQuaternion;
+			}
+
+			// Dampen towards the target rotation
+			curTime += Time.deltaTime;
+			float t = curTime / animationTime;
+			Quaternion deltaRotation = Quaternion.Slerp(transform.rotation, target, t);
+			GetComponent<Rigidbody>().MoveRotation(deltaRotation);
+			//Quaternion.AngleAxis (maxAngle, Vector3.up); 
+
+			if (t > 1.0f)
+			{
+				curTime = 0.0f;
+				if (pickingState == 1)
+				{
+					AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
+				}
+				pickingState = (pickingState + 1) % 3;
 			}
 		}
 	}
