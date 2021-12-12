@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-	public int[] playersScores;
+	public Text[] scoreTexts;
+	private int[] playersScores = new int[] {0,0,0,0};
 
 	void OnEnable()
 	{
-		// init playersScores
 	}
 
 	void Update()
@@ -28,7 +29,8 @@ public class GameManager : Singleton<GameManager>
 
 	public void AddScore(int score, int id)
 	{
-		Debug.Log("SCORE!!");
-		// playersScores[id] += score;
+		playersScores[id] += score;
+		// Debug.Log("SCORE of "+id+ "="+playersScores[id]);
+		scoreTexts[id].text = playersScores[id].ToString();
 	}
 }
