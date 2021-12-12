@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
 {
 	public Text[] scoreTexts;
 	private int[] playersScores = new int[] {0,0,0,0};
+	public Text timerText;
+	public float gameTime = 60f;
 
 	void Update()
 	{
@@ -27,6 +29,8 @@ public class GameManager : Singleton<GameManager>
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
 		}
+		gameTime -= Time.deltaTime;
+		timerText.text = ((int)gameTime).ToString();
 	}
 
 	public void AddScore(int score, int id)
