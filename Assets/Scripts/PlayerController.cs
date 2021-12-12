@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnMove(InputValue value)
 	{
-		moveBy = value.Get<Vector2>() * moveSpeed;
+		moveBy = value.Get<Vector2>() * Time.deltaTime * moveSpeed;
 	}
 
 	public void OnCut()

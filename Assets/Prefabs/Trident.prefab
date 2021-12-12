@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a3cee66f8e3754eaac1a366db1d4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.01
+  moveSpeed: 0.2
   maxAngle: 40
   animationTime: 0.15
   cuttingState: 0
