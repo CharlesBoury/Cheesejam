@@ -56,7 +56,7 @@ public class Slicer : MonoBehaviour
 			Rigidbody rb = slice.GetComponent<Rigidbody>();
 
 			// Compute volume and mass
-			float volume = getVolume(slice);
+			float volume = Utils.GetVolume(slice);
 			rb.mass = volume * originalCheese.density / 1000.0f;
 			if(rb.mass < minMass) {
 				rb.mass = minMass;
@@ -83,13 +83,6 @@ public class Slicer : MonoBehaviour
 		if(volume > minCuttableVolume) {
 			newCheese.cuttable = true;
 		}
-	}
-
-	private float getVolume(GameObject go)
-	{
-		Mesh mesh = go.GetComponent<MeshFilter>().mesh;
-		float volume = mesh.bounds.size.x * mesh.bounds.size.y * mesh.bounds.size.z;
-		return volume * 1000*1000;
 	}
 
 	private void	PickThing(GameObject go)

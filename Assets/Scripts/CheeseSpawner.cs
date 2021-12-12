@@ -7,7 +7,7 @@ public class CheeseSpawner : MonoBehaviour
 	public List<GameObject> cheeseList = new List<GameObject>();
 
 
-	public GameObject cheeseObject;
+	public GameObject cheeses;
 
 
     [Range(1, 20)]
@@ -31,6 +31,9 @@ public class CheeseSpawner : MonoBehaviour
 	private float radius;
 	private float cheeseOrientation;
 
+	private float totalCheeseVolume = 0;
+	private float initCheeseVolume = 0;
+
 	public Transform height;
 
 	private readonly float tableRadius = 0.35f;
@@ -41,10 +44,18 @@ public class CheeseSpawner : MonoBehaviour
 			height = transform;
 	}
 
-	void InstantiateRandomCheese(Vector3 pos, float angle) {
+	public void OnRemoveCheese(GameObject cheese) {
+		totalCheeseVolume -= Utils.GetVolume(cheese);
+		if (totalCheeseVolume < initCheeseVolume) {// / nbCheesesToDrop) * (nbCheesesToDrop - 1)) {
+			SpawnRandomCheese(Random.Range(0, nbCheesesToDrop));
+		}
+	}
+
+	void InstantiateRandomCheese(Vector3 pos, float angle, int spaceIndex) {
         int cheeseIndex = Random.Range(0, cheeseList.Count);
 		GameObject original = cheeseList[cheeseIndex];
-		Instantiate(original, pos, Quaternion.Euler(0, - angle * Mathf.Rad2Deg + cheeseOrientation, 0), cheeseObject.transform);
+		GameObject cheese = Instantiate(original, pos, Quaternion.Euler(0, - angle * Mathf.Rad2Deg + cheeseOrientation, 0), cheeses.transform);
+		totalCheeseVolume += Utils.GetVolume(cheese);
 	}
 
     void Start()
@@ -56,11 +67,11 @@ public class CheeseSpawner : MonoBehaviour
 		cheeseOrientation = 90 * Random.Range(-2, 2);
     }
 
-	void SpawnRandomCheese() {
+	void SpawnRandomCheese(int spaceIndex) {
 		float angle;
 
 		if (regular)
-			angle = (2 * nbCheesesDropped * Mathf.PI) / nbCheesesToDrop;
+			angle = (2 * spaceIndex * Mathf.PI) / nbCheesesToDrop;
 		else
 			angle = Random.Range(0f, 2f * Mathf.PI);
 		if (!regular)
@@ -68,16 +79,18 @@ public class CheeseSpawner : MonoBehaviour
 
 		float x = Mathf.Cos(angle) * radius;
 		float z = Mathf.Sin(angle) * radius;
-		InstantiateRandomCheese(new Vector3(height.position.x + x, height.position.y + fallingDistance, height.position.z + z), angle);
-		nbCheesesDropped++;
+		InstantiateRandomCheese(new Vector3(height.position.x + x, height.position.y + fallingDistance, height.position.z + z), angle, spaceIndex);
 	}
 
     // Update is called once per frame
     void Update()
     {
 		if (nbCheesesDropped < nbCheesesToDrop && Time.time - lastDropped > spawnTimeDelta) {
-			SpawnRandomCheese();
+			SpawnRandomCheese(nbCheesesDropped);
 			lastDropped = Time.time;
+			if (++nbCheesesDropped == nbCheesesToDrop) {
+				initCheeseVolume = totalCheeseVolume;
+			}
 		}
     }
 }

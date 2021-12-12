@@ -24,6 +24,8 @@ public class Cheese : MonoBehaviour
 		}
 		if (transform.position.y < -2f)
 		{
+			CheeseSpawner cheeseSpawner = GameManager.Instance.GetComponent<CheeseSpawner>();
+			cheeseSpawner.OnRemoveCheese(gameObject);
 			Destroy(gameObject);
 		}
 	}
