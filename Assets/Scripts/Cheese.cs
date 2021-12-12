@@ -14,9 +14,7 @@ public class Cheese : MonoBehaviour
 	public Material crossSectionMaterial;
     public AudioClip fallAudio;
 
-
 	private bool hasSoundPlayed=false;
-
 
 	void Update()
 	{

@@ -87,13 +87,16 @@ public class PlayerController : MonoBehaviour
 			foreach (Cheese child in GetComponentsInChildren<Cheese>())
 			{
 				float distToBase = Vector3.Distance(child.transform.position, basePos); 
-				if(distToBase < baseThreshold) {
+				if (distToBase < baseThreshold) {
 					GameManager.Instance.AddScore(1, id);
 					Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
 					// freeze position but not rotation
 					rb.constraints = RigidbodyConstraints.FreezePosition;
 					child.cuttable = false;
 					child.pickable = false;
+					
+					CheeseSpawner cheeseSpawner = GameManager.Instance.GetComponent<CheeseSpawner>();
+					cheeseSpawner.OnRemoveCheese(child.gameObject);
 				} else {
 					// release the beast
 					Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
