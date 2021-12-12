@@ -474,14 +474,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 177148214, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 177148214, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9009534156304453345, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -532,10 +524,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9009534156304453358, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
       propertyPath: cheeses
-      value: 
-      objectReference: {fileID: 824538027}
-    - target: {fileID: 9009534156304453358, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
-      propertyPath: cheeseObject
       value: 
       objectReference: {fileID: 824538027}
     m_RemovedComponents: []
