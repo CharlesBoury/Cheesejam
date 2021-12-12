@@ -108,7 +108,7 @@ public class Slicer : MonoBehaviour
 		PlayerController ctrl = trident.GetComponent<PlayerController>();
 		if (ctrl.state == State.Picking_Down && cheese.pickable && ctrl.timer <= 0.01f)
 		{
-			ctrl.state = State.Picking_Up;
+			ctrl.state = State.Holding;
 			PickThing(other.gameObject);
 		}
 	}

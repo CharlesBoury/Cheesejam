@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
 		{
 			state = State.Picking_Up;
 			timer = Mathf.Max(timer, 0.5f);
+			positionWhenPick = transform.position;
 			foreach (Cheese child in GetComponentsInChildren<Cheese>())
 			{
 				child.transform.SetParent(null);
