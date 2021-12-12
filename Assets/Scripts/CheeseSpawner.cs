@@ -54,8 +54,12 @@ public class CheeseSpawner : MonoBehaviour
 	void InstantiateRandomCheese(Vector3 pos, float angle, int spaceIndex) {
         int cheeseIndex = Random.Range(0, cheeseList.Count);
 		GameObject original = cheeseList[cheeseIndex];
-		GameObject cheese = Instantiate(original, pos, Quaternion.Euler(0, - angle * Mathf.Rad2Deg + cheeseOrientation, 0), cheeses.transform);
-		totalCheeseVolume += Utils.GetVolume(cheese);
+		GameObject cheeseObject = Instantiate(original, pos, Quaternion.Euler(0, - angle * Mathf.Rad2Deg + cheeseOrientation, 0), cheeses.transform);
+		float volume = Utils.GetVolume(cheeseObject);
+		Rigidbody rb = cheeseObject.GetComponent<Rigidbody>();
+		Cheese cheese = cheeseObject.GetComponent<Cheese>();
+		rb.mass = volume * cheese.density / 1000.0f;
+		totalCheeseVolume += volume;
 	}
 
     void Start()

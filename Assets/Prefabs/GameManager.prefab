@@ -67,7 +67,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 22a0dcf517ee0d1469a0f8ce0f71ed47, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   - {fileID: 4149684001062952534, guid: 5f1a3a3511bb94ede84eb59603b8a8ff, type: 3}
   - {fileID: 9045933700229307824, guid: 09eaa32221e6d44ab80531703f3f5cbf, type: 3}
   - {fileID: 8140549691224904138, guid: 1ba483699f56ac940a89acd3aef1cc6e, type: 3}
-  cheeseObject: {fileID: 0}
+  cheeses: {fileID: 0}
   nbCheesesToDrop: 6
   minDistanceFromCenter: 0.01
   minDistanceFromEdge: 0.061
