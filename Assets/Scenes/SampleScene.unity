@@ -474,6 +474,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1681523617158812884, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_Volume
+      value: 0.832
+      objectReference: {fileID: 0}
+    - target: {fileID: 966384470961337687, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928789500301480877, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289579525761635668, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467146179537770565, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9009534156304453345, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -526,5 +546,13 @@ PrefabInstance:
       propertyPath: cheeses
       value: 
       objectReference: {fileID: 824538027}
+    - target: {fileID: 9009534156562058909, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009534156562058909, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}

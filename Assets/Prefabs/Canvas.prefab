@@ -322,10 +322,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6786140397849431341, guid: 218b85a7170788645943720940ac4914, type: 3}
-      propertyPath: m_Text
-      value: FriggJunior
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786140397849431341, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 2
       objectReference: {fileID: 0}
@@ -718,6 +714,10 @@ PrefabInstance:
     - target: {fileID: 6470662649417029447, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786140397849431341, guid: 218b85a7170788645943720940ac4914, type: 3}
+      propertyPath: m_Text
+      value: Frigg
       objectReference: {fileID: 0}
     - target: {fileID: 8793113907454933181, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
