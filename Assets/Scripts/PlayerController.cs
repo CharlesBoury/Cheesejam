@@ -15,6 +15,8 @@ public enum State
 
 public class PlayerController : MonoBehaviour
 {
+	static int idCounter = 0;
+
 	public float moveSpeed = 0.3f;
 	public float maxAngle = 40f;
 	public float animationTime = 1.0f;
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
 	public float baseThreshold = 0.4f;
 	public float timer = 0f;
 	public bool canMoveOnCut = false;
+	public State state;
+	public int id = 0;
 
 	public List<AudioClip> woodSounds = new List<AudioClip>();
 
@@ -34,13 +38,10 @@ public class PlayerController : MonoBehaviour
 	private float playerHeight = 0.2f;
 	private Vector3 positionWhenCut;
 	private Vector3 positionWhenPick;
-	static int id = 0;
-
-	public State state;
-
 
 	public void OnEnable()
 	{
+		id = idCounter;
 		state = State.Moving;
 		slicer = GetComponentInChildren<Slicer>();
 
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
 				break;
 		}
 		transform.position = startPos;
-		id++;
+		idCounter++;
 	}
 
 	public void OnPick()

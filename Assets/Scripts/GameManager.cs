@@ -9,11 +9,13 @@ public class GameManager : Singleton<GameManager>
 	public Text[] scoreTexts;
 	private int[] playersScores = new int[] {0,0,0,0};
 
-	void OnEnable()
+	void Update()
 	{
+		UpdateScores();
+		ConstrainMouse();
 	}
 
-	void Update()
+	void ConstrainMouse()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
@@ -30,7 +32,13 @@ public class GameManager : Singleton<GameManager>
 	public void AddScore(int score, int id)
 	{
 		playersScores[id] += score;
-		// Debug.Log("SCORE of "+id+ "="+playersScores[id]);
-		scoreTexts[id].text = playersScores[id].ToString();
+	}
+
+	void UpdateScores()
+	{
+		for(int id = 0; id < scoreTexts.Length; id++)
+		{
+			scoreTexts[id].text = playersScores[id].ToString();
+		}
 	}
 }
