@@ -75,12 +75,9 @@ public class PlayerController : MonoBehaviour
 			transform.position.y,
 			transform.position.z + moveBy.y);
 
-		float distance = Vector3.Distance(newPos, startPos);
-		if (distance <= radius)
-		{
-			//newPos *= radius / distance;
-			transform.position = newPos;
-		}
+		Vector3 vecFromBase = newPos - startPos;
+		vecFromBase = Vector3.ClampMagnitude(vecFromBase, radius);
+		transform.position = startPos + vecFromBase;
 	}
 
 	void Update()
