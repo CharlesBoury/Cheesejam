@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
 	public Text[] scoreTexts;
-	private int[] playersScores = new int[] {0,0,0,0};
+	public static int[] playersScores = new int[] {0,0,0,0};
 	public Text timerText;
 	public float gameTime = 60f;
 	AudioSource fxSound; 
@@ -75,6 +76,6 @@ public class GameManager : Singleton<GameManager>
 			}
 
 		}
-		Debug.Log("winner is "+ winner);
+		SceneManager.LoadScene("EndGame");
 	}
 }
