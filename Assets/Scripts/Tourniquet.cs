@@ -22,7 +22,7 @@ public class Tourniquet : MonoBehaviour
 		}
 		else
 		{
-			innerTime += Time.time;
+			innerTime += Time.fixedDeltaTime;
 			int step = ((int)innerTime) / 20 + 1;
 			Vector3 deltaRotation = new Vector3(0, 1, 0) * Time.fixedDeltaTime * speed * step * step;
 
