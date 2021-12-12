@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class SetText : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class SetText : MonoBehaviour
         {
             endGameText.text += "Player" + (ladder[i] + 1).ToString() + ": " + scores[i] + "\n";
         }
+
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
