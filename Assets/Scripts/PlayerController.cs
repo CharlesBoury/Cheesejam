@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 			{
 				float distToBase = Vector3.Distance(child.transform.position, basePos); 
 				if(distToBase < baseThreshold) {
-					Debug.Log("SCORE!!");
+					GameManager.Instance.AddScore(1, id);
 					Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
 					// freeze position but not rotation
 					rb.constraints = RigidbodyConstraints.FreezePosition;

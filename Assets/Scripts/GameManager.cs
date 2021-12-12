@@ -7,6 +7,11 @@ public class GameManager : Singleton<GameManager>
 {
 	public int[] playersScores;
 
+	void OnEnable()
+	{
+		// init playersScores
+	}
+
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -19,5 +24,11 @@ public class GameManager : Singleton<GameManager>
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
 		}
+	}
+
+	public void AddScore(int score, int id)
+	{
+		Debug.Log("SCORE!!");
+		// playersScores[id] += score;
 	}
 }
