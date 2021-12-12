@@ -10,6 +10,14 @@ public class GameManager : Singleton<GameManager>
 	private int[] playersScores = new int[] {0,0,0,0};
 	public Text timerText;
 	public float gameTime = 60f;
+	AudioSource fxSound; 
+
+	void Start ()
+	{
+		// Audio Source to play 
+		fxSound = GetComponent<AudioSource> ();
+		fxSound.Play ();
+	}
 
 	void Update()
 	{

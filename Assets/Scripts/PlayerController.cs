@@ -23,24 +23,27 @@ public class PlayerController : MonoBehaviour
 	private float curTime = 0.0f;
 	public float cutSpeed = 100.0f;
 	public float pickSpeed = 100.0f;
-	public float baseThreshold = 0.4f;
 	public float timer = 0f;
 	public bool canMoveOnCut = false;
 	public State state;
 	public int id = 0;
 	private float defaultMoveSpeed = 0.4f;
 	private float minMoveSpeed = 0.1f;
+	private float moveSpeed;
+
+	public Object assiette;
 
 	public List<AudioClip> woodSounds = new List<AudioClip>();
 
 	private Slicer slicer;
 	private Vector3 startPos;
-	private Vector3 basePos;
+	private Vector2 basePos;
 	private Vector2 moveByEachFrame;
 	private float playerHeight = 0.2f;
 	private Vector3 positionWhenCut;
 	private Vector3 positionWhenPick;
-	private float moveSpeed;
+	private float assietteCoordonnee = 0.36f;
+	private float baseThreshold = 0.2f;
 
 	public void OnEnable()
 	{
@@ -52,26 +55,28 @@ public class PlayerController : MonoBehaviour
 		{
 			case 0:
 				startPos = new Vector3(-0.25f, playerHeight, 0.2f);
-				basePos = new Vector3(-0.5f, playerHeight, 0.5f);
+				basePos = new Vector2(-assietteCoordonnee, assietteCoordonnee);
 				transform.Rotate(0f, 135f, 0f);
 				break;
 			case 1:
 				startPos = new Vector3(0.25f, playerHeight, 0.2f);
-				basePos = new Vector3(0.5f, playerHeight, 0.5f);
+				basePos = new Vector2(assietteCoordonnee, assietteCoordonnee);
 				transform.Rotate(0f, -135f, 0f);
 				break;
 			case 2:
 				startPos = new Vector3(-0.25f, playerHeight, -0.2f);
-				basePos = new Vector3(-0.5f, playerHeight, -0.5f);
+				basePos = new Vector2(-assietteCoordonnee, -assietteCoordonnee);
 				transform.Rotate(0f, 45f, 0f);
 				break;
 			case 3:
 				startPos = new Vector3(0.25f, playerHeight, -0.2f);
-				basePos = new Vector3(0.5f, playerHeight, -0.5f);
+				basePos = new Vector2(assietteCoordonnee, -assietteCoordonnee);
 				transform.Rotate(0f, -45f, 0f);
 				break;
 		}
 		transform.position = startPos;
+		Vector3 positionAssiette = new Vector3(basePos.x, 0, basePos.y);
+		Instantiate(assiette, positionAssiette, Quaternion.identity);
 		idCounter++;
 	}
 
@@ -89,15 +94,18 @@ public class PlayerController : MonoBehaviour
 			positionWhenPick = transform.position;
 			foreach (Cheese child in GetComponentsInChildren<Cheese>())
 			{
-				float distToBase = Vector3.Distance(child.transform.position, basePos); 
-				if (distToBase < baseThreshold) {
+				Vector2 pos2D = new Vector2(child.transform.position.x, child.transform.position.z);
+				float distToBase = Vector2.Distance(pos2D, basePos);
+
+				if(distToBase < baseThreshold)
+				{
 					GameManager.Instance.AddScore(1, id);
 					Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
 					// freeze position but not rotation
 					rb.constraints = RigidbodyConstraints.FreezePosition;
 					child.cuttable = false;
 					child.pickable = false;
-					
+
 					CheeseSpawner cheeseSpawner = GameManager.Instance.GetComponent<CheeseSpawner>();
 					cheeseSpawner.OnRemoveCheese(child.gameObject);
 				} else {

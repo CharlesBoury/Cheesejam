@@ -54,10 +54,12 @@ MonoBehaviour:
   pickSpeed: 100
   timer: 0
   canMoveOnCut: 0
+  state: 0
+  id: 0
+  assiette: {fileID: 828385274656644378, guid: 04777efa2752e9f47be6412b56f29094, type: 3}
   woodSounds:
   - {fileID: 8300000, guid: e88706d2e63a75f4fb79446a20aa9828, type: 3}
   - {fileID: 8300000, guid: a965394758cbc8142ad7554a9beac027, type: 3}
-  state: 0
 --- !u!114 &2545859757844449331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +217,6 @@ MonoBehaviour:
   cheeses: {fileID: 0}
   thrust: 10
   waitingTime: 0.15
-  minCuttableVolume: 10
   minMass: 0.1
   isSharp: 1
   hasSliced: 0
