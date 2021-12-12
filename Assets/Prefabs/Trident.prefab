@@ -52,12 +52,15 @@ MonoBehaviour:
   animationTime: 0.15
   cutSpeed: 100
   pickSpeed: 100
+  baseThreshold: 0.2
   timer: 0
   canMoveOnCut: 0
+  state: 0
+  id: 0
+  assiette: {fileID: 919132149155446097, guid: 0e47bfa5a7a6c7d43a7d26ae2a5a6a92, type: 3}
   woodSounds:
   - {fileID: 8300000, guid: e88706d2e63a75f4fb79446a20aa9828, type: 3}
   - {fileID: 8300000, guid: a965394758cbc8142ad7554a9beac027, type: 3}
-  state: 0
 --- !u!114 &2545859757844449331
 MonoBehaviour:
   m_ObjectHideFlags: 0
