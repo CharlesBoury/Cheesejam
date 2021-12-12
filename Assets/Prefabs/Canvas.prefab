@@ -583,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786140397849431341, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_Text
-      value: Skemeth
+      value: Sekmeth
       objectReference: {fileID: 0}
     - target: {fileID: 6786140397849431341, guid: 218b85a7170788645943720940ac4914, type: 3}
       propertyPath: m_FontData.m_Alignment
