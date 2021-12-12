@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 	public float timer = 0f;
 	public bool canMoveOnCut = false;
 
-	public AudioClip audioClip;
+	public List<AudioClip> woodSounds = new List<AudioClip>();
 
 	private Slicer slicer;
 	private Vector3 startPos;
@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
 		if(state == State.Moving)
 		{
 			state = State.Cutting_Down;
-			AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
 			positionWhenCut = transform.position;
 		}
 	}
@@ -157,10 +156,16 @@ public class PlayerController : MonoBehaviour
 				if (state == State.Cutting_Down)
 				{
 					state = State.Cutting_Up;
+					if (slicer.hasSliced == false)
+					{
+						int index = Random.Range(0, woodSounds.Count);
+						AudioSource.PlayClipAtPoint(woodSounds[index], transform.position, 1.0f);
+					}
 				}
 				else if (state == State.Cutting_Up)
 				{
 					state = State.Moving;
+					slicer.hasSliced = false;
 				}
 			}
 		}

@@ -52,13 +52,12 @@ MonoBehaviour:
   animationTime: 0.15
   cutSpeed: 100
   pickSpeed: 100
-  cuttingState: 0
-  canMoveOnCut: 0
-  pickingState: 0
-  pickingStateSave: 0
-  hasPicked: 0
-  audioClip: {fileID: 8300000, guid: 7a6b599c10c581349bf50df4b3a519b9, type: 3}
   timer: 0
+  canMoveOnCut: 0
+  woodSounds:
+  - {fileID: 8300000, guid: e88706d2e63a75f4fb79446a20aa9828, type: 3}
+  - {fileID: 8300000, guid: a965394758cbc8142ad7554a9beac027, type: 3}
+  state: 0
 --- !u!114 &2545859757844449331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +218,10 @@ MonoBehaviour:
   minCuttableVolume: 10
   minMass: 0.1
   isSharp: 1
+  hasSliced: 0
+  sliceSounds:
+  - {fileID: 8300000, guid: 7a6b599c10c581349bf50df4b3a519b9, type: 3}
+  - {fileID: 8300000, guid: 4271f42b8a97db741b72da8d97eff625, type: 3}
 --- !u!1001 &6755052720443947806
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ public class Slicer : MonoBehaviour
 	public float minMass = 0.1f;
 	public bool isSharp = false;
 	float timer = 0;
+	public bool hasSliced = false;
+
+	public List<AudioClip> sliceSounds = new List<AudioClip>();
 
 	void Update()
 	{
@@ -39,6 +42,9 @@ public class Slicer : MonoBehaviour
 			Debug.Log("Slicing Failed!");
 			return;
 		}
+		hasSliced = true;
+		int index = Random.Range(0, sliceSounds.Count);
+		AudioSource.PlayClipAtPoint(sliceSounds[index], transform.position, 1.0f);
 		// Loop over slices: first slice has positive thrust, second negative
 		float sign=1.0f; 
 		foreach(GameObject slice in slices)
@@ -101,7 +107,7 @@ public class Slicer : MonoBehaviour
 			return;
 		if (isSharp && timer <= 0.01f)
 		{
-			if (cheese.cuttable) {	 
+			if (cheese.cuttable) {
 				SliceThing(other.gameObject);
 				DisableSliceFor(waitingTime);
 			}
