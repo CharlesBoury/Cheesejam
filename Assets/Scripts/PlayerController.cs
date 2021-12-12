@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 	public Object assiette;
 
 	public List<AudioClip> woodSounds = new List<AudioClip>();
+	public List<AudioClip> youpiSounds = new List<AudioClip>();
 
 	private Slicer slicer;
 	private Vector3 startPos;
@@ -119,6 +120,8 @@ public class PlayerController : MonoBehaviour
 				else
 					score = 1;
 				GameManager.Instance.AddScore(score, id);
+				int index = Random.Range(0, youpiSounds.Count);
+				AudioSource.PlayClipAtPoint(youpiSounds[index], transform.position, 1.0f);
 				Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
 				// freeze position but not rotation
 				rb.constraints = RigidbodyConstraints.FreezePosition;
