@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
 		// Audio Source to play 
 		fxSound = GetComponent<AudioSource> ();
 		fxSound.Play ();
+		playersScores = new int[] { 0, 0, 0, 0 };
 	}
 
 	void Update()

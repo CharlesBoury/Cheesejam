@@ -16,7 +16,7 @@ public enum State
 
 public class PlayerController : MonoBehaviour
 {
-	static int idCounter = 0;
+	public static int idCounter = 0;
 
 	
 	public float maxAngle = 40f;
