@@ -89,6 +89,8 @@ public class Slicer : MonoBehaviour
 	private void	PickThing(GameObject go)
     {
 		go.transform.SetParent(transform.parent);
+		Rigidbody rb = go.GetComponent<Rigidbody>();
+		rb.constraints = RigidbodyConstraints.FreezePosition;
     }
 
 
