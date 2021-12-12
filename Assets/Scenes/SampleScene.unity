@@ -180,23 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f0c7035762af294cb8b17cbe1e5017a, type: 3}
---- !u!1 &248728333 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9009534156304453347, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
-  m_PrefabInstance: {fileID: 9009534156530593046}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &248728337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248728333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c80c14bd0fd39c2478262abc1a82017a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &351236797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,22 +274,6 @@ PrefabInstance:
     - target: {fileID: 901848920942162810, guid: 0b661c822b5497b43928a03d16ba4c0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738814281208941311, guid: 0b661c822b5497b43928a03d16ba4c0f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00012207031
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921043040150865902, guid: 0b661c822b5497b43928a03d16ba4c0f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
-      objectReference: {fileID: 0}
-    - target: {fileID: 3408944782077545478, guid: 0b661c822b5497b43928a03d16ba4c0f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00012207031
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097755919426054908, guid: 0b661c822b5497b43928a03d16ba4c0f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b661c822b5497b43928a03d16ba4c0f, type: 3}
@@ -525,6 +492,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3603380306528495240, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
+      propertyPath: playersScores.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9009534156304453345, guid: bbbc8d6a38b5557468d9c4e777367b3c, type: 3}
       propertyPath: m_RootOrder
       value: 1
