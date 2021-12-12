@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum State
+{
+	Moving,
+	Cutting_Down,
+	Cutting_Up,
+	Picking_Down,
+	Picking_Up,
+	Holding,
+};
+
 public class PlayerController : MonoBehaviour
 {
 	public float moveSpeed = 0.3f;
@@ -11,26 +21,25 @@ public class PlayerController : MonoBehaviour
 	private float curTime = 0.0f;
 	public float cutSpeed = 100.0f;
 	public float pickSpeed = 100.0f;
-	public int cuttingState = 0;
+	public float timer = 0f;
 	public bool canMoveOnCut = false;
-
-	public int pickingState = 0;
-	public int pickingStateSave = 0;
-	public bool hasPicked = false;
 
 	public AudioClip audioClip;
 
 	private Slicer slicer;
 	private Vector3 startPos;
-	private Vector2 moveBy;
+	private Vector2 moveByEachFrame;
 	private float playerHeight = 0.2f;
 	private Vector3 positionWhenCut;
 	private Vector3 positionWhenPick;
 	static int id = 0;
 
-	public float timer = 0f;
+	public State state;
 
-	public void OnEnable() {
+
+	public void OnEnable()
+	{
+		state = State.Moving;
 		slicer = GetComponentInChildren<Slicer>();
 
 		switch (id)
@@ -58,46 +67,46 @@ public class PlayerController : MonoBehaviour
 
 	public void OnPick()
 	{
-		if (pickingState == 0 && hasPicked == false && timer <= 0.01f)
+		if (state == State.Moving && timer <= 0.01f)
 		{
-			pickingState = 1;
+			state = State.Picking_Down;
 			positionWhenPick = transform.position;
 		}
-		else if (hasPicked == true)
+		else if (state == State.Holding)
 		{
-			pickingState = pickingStateSave;
-			hasPicked = false;
+			state = State.Picking_Up;
 			timer = Mathf.Max(timer, 0.5f);
 			foreach (Cheese child in GetComponentsInChildren<Cheese>())
 			{
 				child.transform.SetParent(null);
 			}
 		}
-			
+
 	}
 
 	public void OnMove(InputValue value)
 	{
-		moveBy = value.Get<Vector2>() * Time.deltaTime * moveSpeed;
+		moveByEachFrame = value.Get<Vector2>() * Time.deltaTime * moveSpeed;
 	}
 
 	public void OnCut()
 	{
-		if(cuttingState == 0)
+		if(state == State.Moving)
 		{
-			cuttingState = 1;
+			state = State.Cutting_Down;
 			AudioSource.PlayClipAtPoint(audioClip, transform.position, 1.0f);
 			positionWhenCut = transform.position;
 		}
 	}
 
 
-	void updatePos() {
-		float radius = 0.1f;	
+	void updatePos()
+	{
+		float radius = 0.1f;
 		Vector3 newPos = new Vector3(
-			transform.position.x + moveBy.x,
+			transform.position.x + moveByEachFrame.x,
 			transform.position.y,
-			transform.position.z + moveBy.y);
+			transform.position.z + moveByEachFrame.y);
 
 		Vector3 vecFromBase = newPos - startPos;
 		vecFromBase = Vector3.ClampMagnitude(vecFromBase, radius);
@@ -109,69 +118,88 @@ public class PlayerController : MonoBehaviour
 		timer -= Time.deltaTime;
 		timer = Mathf.Max(0, timer);
 
-		//if (cuttingState == 0 || canMoveOnCut)
+		if (state == State.Moving || state == State.Holding || canMoveOnCut)
+		{
 			updatePos();
+		}
 
-		// cutting
-		if (cuttingState > 0) {
+		if (state == State.Cutting_Down || state == State.Cutting_Up)
+		{
 			// Dampen towards the target position
 			Vector3 from;
 			Vector3 to;
 			curTime += Time.deltaTime;
 			float t = curTime / animationTime;
 
-			// cutting down
-			if(cuttingState == 1)
+			if(state == State.Cutting_Down)
 			{
 				slicer.isSharp = true;
 				from = positionWhenCut;
 				to = new Vector3(positionWhenCut.x, 0, positionWhenCut.z);
+				Vector3 targetPosition = Vector3.Lerp(from, to, t);
+				GetComponent<Rigidbody>().position = targetPosition;
 			}
-			// goind back up
-			else
+			else if (state == State.Cutting_Up)
 			{
 				slicer.isSharp = false;
 				from = new Vector3(positionWhenCut.x, 0, positionWhenCut.z);
 				to = positionWhenCut;
+				Vector3 targetPosition = Vector3.Lerp(from, to, t);
+				GetComponent<Rigidbody>().position = targetPosition;
 			}
 
-			Vector3 targetPosition = Vector3.Lerp(from, to, t);
-			GetComponent<Rigidbody>().position = targetPosition;
 
 			if (t > 1.0f)
 			{
 				curTime = 0.0f;
-				cuttingState = (cuttingState + 1)%3;
+
+				if (state == State.Cutting_Down)
+				{
+					state = State.Cutting_Up;
+				}
+				else if (state == State.Cutting_Up)
+				{
+					state = State.Moving;
+				}
 			}
 		}
 
-		if (pickingState > 0)
-        {
+		if (state == State.Picking_Down || state == State.Picking_Up)
+		{
 			Vector3 from;
 			Vector3 to;
 			curTime += Time.deltaTime;
 			float t = curTime / animationTime;
 
-			// picking down
-			if (pickingState == 1)
+			if (state == State.Picking_Down)
 			{
 				from = positionWhenPick;
 				to = new Vector3(positionWhenPick.x, 0, positionWhenPick.z);
+
+				Vector3 targetPosition = Vector3.Lerp(from, to, t);
+				GetComponent<Rigidbody>().position = targetPosition;
 			}
-			// goind back up
-			else
+			else if (state == State.Picking_Up)
 			{
 				from = new Vector3(positionWhenPick.x, 0, positionWhenPick.z);
 				to = positionWhenPick;
-			}
 
-			Vector3 targetPosition = Vector3.Lerp(from, to, t);
-			GetComponent<Rigidbody>().position = targetPosition;
+				Vector3 targetPosition = Vector3.Lerp(from, to, t);
+				GetComponent<Rigidbody>().position = targetPosition;
+			}
 
 			if (t > 1.0f)
 			{
 				curTime = 0.0f;
-				pickingState = (pickingState + 1) % 3;
+
+				if (state == State.Picking_Down)
+				{
+					state = State.Picking_Up;
+				}
+				else if (state == State.Picking_Up)
+				{
+					state = State.Moving;
+				}
 			}
 		}
 	}
