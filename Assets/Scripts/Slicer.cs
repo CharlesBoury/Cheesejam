@@ -96,7 +96,7 @@ public class Slicer : MonoBehaviour
     {
 		go.transform.SetParent(transform.parent);
 		Rigidbody rb = go.GetComponent<Rigidbody>();
-		rb.constraints = RigidbodyConstraints.FreezePosition;
+		rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
 

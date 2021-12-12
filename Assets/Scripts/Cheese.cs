@@ -10,13 +10,20 @@ public class Cheese : MonoBehaviour
 	public bool pickable = false;
 	public Material crossSectionMaterial;
     public AudioClip fallAudio;
+	private bool hasSoundPlayed=false;
 
 
 	void Update()
 	{
+		if (transform.position.y < -0.5f)
+		{
+			if(!hasSoundPlayed) {
+				AudioSource.PlayClipAtPoint(fallAudio, transform.position, 1.0f);
+				hasSoundPlayed = true;
+			}
+		}
 		if (transform.position.y < -2f)
 		{
-            AudioSource.PlayClipAtPoint(fallAudio, transform.position, 1.0f);
 			Destroy(gameObject);
 		}
 	}
