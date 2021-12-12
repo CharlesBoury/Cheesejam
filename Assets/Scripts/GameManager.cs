@@ -13,8 +13,18 @@ public class GameManager : Singleton<GameManager>
 
 	void Update()
 	{
-		UpdateScores();
 		ConstrainMouse();
+
+		UpdateScores();
+
+		gameTime -= Time.deltaTime;
+		gameTime = Mathf.Max(gameTime, 0);
+		timerText.text = ((int)gameTime).ToString() + "s";
+
+		if (gameTime == 0)
+		{
+			GameOver();
+		}
 	}
 
 	void ConstrainMouse()
@@ -29,8 +39,6 @@ public class GameManager : Singleton<GameManager>
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
 		}
-		gameTime -= Time.deltaTime;
-		timerText.text = ((int)gameTime).ToString() + "s";
 	}
 
 	public void AddScore(int score, int id)
@@ -44,5 +52,21 @@ public class GameManager : Singleton<GameManager>
 		{
 			scoreTexts[id].text = playersScores[id].ToString();
 		}
+	}
+
+	void GameOver()
+	{
+		int winner = 0;
+		int bestScore = 0;
+		for(int id = 0; id < scoreTexts.Length; id++)
+		{
+			if (playersScores[id] > bestScore)
+			{
+				bestScore = playersScores[id];
+				winner = id;
+			}
+
+		}
+		Debug.Log("winner is "+ winner);
 	}
 }
