@@ -75,14 +75,17 @@ public class Slicer : MonoBehaviour
 		Destroy(go);
 	}
 
-
 	private void	PickThing(GameObject go)
     {
 		go.transform.SetParent(transform.parent);
 		Rigidbody rb = go.GetComponent<Rigidbody>();
 		rb.constraints = RigidbodyConstraints.FreezeAll;
-    }
 
+		GameObject trident = transform.parent.gameObject;
+		PlayerController ctrl = trident.GetComponent<PlayerController>();
+		
+		ctrl.ReduceSpeedFromCheese(go.GetComponent<Cheese>());
+    }
 
 	private void OnTriggerEnter(Collider other)
 	{

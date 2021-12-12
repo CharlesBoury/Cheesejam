@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 {
 	static int idCounter = 0;
 
-	public float moveSpeed = 0.3f;
+	
 	public float maxAngle = 40f;
 	public float animationTime = 1.0f;
 	private float curTime = 0.0f;
@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 	public bool canMoveOnCut = false;
 	public State state;
 	public int id = 0;
+	private float defaultMoveSpeed = 0.4f;
+	private float minMoveSpeed = 0.1f;
 
 	public List<AudioClip> woodSounds = new List<AudioClip>();
 
@@ -38,13 +40,14 @@ public class PlayerController : MonoBehaviour
 	private float playerHeight = 0.2f;
 	private Vector3 positionWhenCut;
 	private Vector3 positionWhenPick;
+	private float moveSpeed;
 
 	public void OnEnable()
 	{
 		id = idCounter;
 		state = State.Moving;
 		slicer = GetComponentInChildren<Slicer>();
-
+		moveSpeed = defaultMoveSpeed;
 		switch (id)
 		{
 			case 0:
@@ -104,6 +107,7 @@ public class PlayerController : MonoBehaviour
 				}
 				child.transform.SetParent(null);
 			}
+			moveSpeed = defaultMoveSpeed;
 		}
 
 	}
@@ -115,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnCut()
 	{
-		if(state == State.Moving)
+		if (state == State.Moving)
 		{
 			state = State.Cutting_Down;
 			positionWhenCut = transform.position;
@@ -136,6 +140,11 @@ public class PlayerController : MonoBehaviour
 			vecFromBase = Vector3.ClampMagnitude(vecFromBase, radius);
 		}
 		transform.position = startPos + vecFromBase;
+	}
+
+	public void ReduceSpeedFromCheese(Cheese cheese) {
+		float volume = Utils.GetVolume(cheese.gameObject);
+		moveSpeed = Mathf.Max(minMoveSpeed, ((cheese.maxPickableVolume - volume) / cheese.maxPickableVolume) * defaultMoveSpeed);
 	}
 
 	void Update()
