@@ -12,6 +12,7 @@ public class Slicer : MonoBehaviour
 	public GameObject cheeses;
 
 	public float thrust = 10f;
+	public float smallThrust = 5f;
 	public float waitingTime = 0.5f;
 	public float minMass = 0.1f;
 	public bool isSharp = false;
@@ -94,7 +95,11 @@ public class Slicer : MonoBehaviour
 			if (cheese.cuttable) {
 				SliceThing(other.gameObject);
 				DisableSliceFor(waitingTime);
-			}
+			} 
+		}
+		if (isSharp && !cheese.cuttable) {
+			Rigidbody rb = other.GetComponent<Rigidbody>();
+			rb.AddForce(other.transform.up * smallThrust);
 		}
 		GameObject trident = transform.parent.gameObject;
 		PlayerController ctrl = trident.GetComponent<PlayerController>();
