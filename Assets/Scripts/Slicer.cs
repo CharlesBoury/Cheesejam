@@ -31,7 +31,6 @@ public class Slicer : MonoBehaviour
 		GameObject[] slices;
 
 		slices = go.SliceInstantiate(transform.position, transform.up, textureRegion, crossSectionMaterial);
-		Debug.Log(slices);
 
 		Cheese originalCheese = go.GetComponent<Cheese>();
 		float sign=1.0f;
