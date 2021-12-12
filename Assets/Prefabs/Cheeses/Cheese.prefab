@@ -129,4 +129,5 @@ MonoBehaviour:
   hardness: 1.51
   density: 1
   cuttable: 1
+  crossSectionMaterial: {fileID: 2100000, guid: 0b6f1dc75ef6b0544b0879ba84a6afd3, type: 2}
   fallAudio: {fileID: 8300000, guid: 7b7b79f4456f93d41be93d6b533bb949, type: 3}
