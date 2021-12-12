@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour
 		else if (state == State.Holding)
 		{
 			state = State.Picking_Up;
-			positionWhenPick = transform.position;
 			timer = Mathf.Max(timer, 0.5f);
 			foreach (Cheese child in GetComponentsInChildren<Cheese>())
 			{

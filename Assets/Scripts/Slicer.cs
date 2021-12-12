@@ -9,8 +9,6 @@ using EzySlice;
 
 public class Slicer : MonoBehaviour
 {
-	public Material crossSectionMaterial;
-	TextureRegion textureRegion;
 	public GameObject cheeses;
 
 	public float thrust = 10f;
@@ -28,13 +26,21 @@ public class Slicer : MonoBehaviour
 
 	void SliceThing(GameObject go)
 	{
-		textureRegion = crossSectionMaterial.GetTextureRegion(0, 0, 100, 100);
-		GameObject[] slices;
+		// Get original cheese properties
+		Cheese originalCheese = go.GetComponent<Cheese>();
+		Material crossSectionMaterial = originalCheese.crossSectionMaterial;
+		TextureRegion textureRegion = crossSectionMaterial.GetTextureRegion(0, 0, 100, 100);
 
+		// Attempt to slice
+		GameObject[] slices;
 		slices = go.SliceInstantiate(transform.position, transform.up, textureRegion, crossSectionMaterial);
 
-		Cheese originalCheese = go.GetComponent<Cheese>();
-		float sign=1.0f;
+		if(slices==null) {
+			Debug.Log("Slicing Failed!");
+			return;
+		}
+		// Loop over slices: first slice has positive thrust, second negative
+		float sign=1.0f; 
 		foreach(GameObject slice in slices)
 		{
 			slice.AddComponent<MeshCollider>();
@@ -42,15 +48,19 @@ public class Slicer : MonoBehaviour
 
 			slice.AddComponent<Rigidbody>();
 			Rigidbody rb = slice.GetComponent<Rigidbody>();
+
+			// Compute volume and mass
 			float volume = getVolume(slice);
 			rb.mass = volume * originalCheese.density / 1000.0f;
 			if(rb.mass < minMass) {
 				rb.mass = minMass;
 			}
 			
+			// Add cheese properties to slices
 			slice.AddComponent<Cheese>();
-
 			updateNewCheese(slice.GetComponent<Cheese>(), originalCheese, volume);
+
+			// Thrust!
 			rb.AddForce(transform.up * thrust * sign);
 			sign = -1.0f;
 		}
@@ -62,8 +72,9 @@ public class Slicer : MonoBehaviour
 		newCheese.hardness = originalCheese.hardness;
 		newCheese.density = originalCheese.density;
 		newCheese.fallAudio = originalCheese.fallAudio;
+		newCheese.crossSectionMaterial = originalCheese.crossSectionMaterial;
 		newCheese.pickable = true;
-		if (volume > minCuttableVolume) {
+		if(volume > minCuttableVolume) {
 			newCheese.cuttable = true;
 		}
 	}
@@ -97,7 +108,7 @@ public class Slicer : MonoBehaviour
 		PlayerController ctrl = trident.GetComponent<PlayerController>();
 		if (ctrl.state == State.Picking_Down && cheese.pickable && ctrl.timer <= 0.01f)
 		{
-			ctrl.state = State.Holding;
+			ctrl.state = State.Picking_Up;
 			PickThing(other.gameObject);
 		}
 	}
