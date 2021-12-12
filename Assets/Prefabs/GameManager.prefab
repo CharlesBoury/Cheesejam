@@ -124,9 +124,10 @@ MonoBehaviour:
   - {fileID: 8140549691224904138, guid: 1ba483699f56ac940a89acd3aef1cc6e, type: 3}
   cheeseObject: {fileID: 0}
   nbCheesesToDrop: 6
-  minDistanceFromCenter: 0.067
-  minDistanceFromEdge: 0.351
-  fallingDistance: 0.2
+  minDistanceFromCenter: 0.01
+  minDistanceFromEdge: 0.061
+  fallingDistance: 0
   spawnTimeDelta: 0.01
   regular: 1
+  cheeseInTheMiddle: 1
   height: {fileID: 1229915741}
