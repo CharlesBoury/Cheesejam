@@ -65,15 +65,15 @@ RectTransform:
   m_GameObject: {fileID: 8793113906803959876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.13324, y: 0.13324, z: 0.13324}
   m_Children: []
   m_Father: {fileID: 6470662649417029447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 85.8, y: -42.3}
+  m_SizeDelta: {x: 1019, y: 1078}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8793113906803959879
 CanvasRenderer:
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2e52a542e46aaf945ae13900de49d16f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6780c568791458906b267e32efb3eab3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: -177, y: -295.6}
   m_SizeDelta: {x: 106.283295, y: 102.388}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8793113907454933182
@@ -180,16 +180,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 22a0dcf517ee0d1469a0f8ce0f71ed47, type: 3}
-    m_FontSize: 50
+    m_FontSize: 88
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 50
+    m_MaxSize: 128
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '0
 
@@ -228,8 +228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
-  m_SizeDelta: {x: 200, y: 30}
+  m_AnchoredPosition: {x: 25.463, y: -109.763}
+  m_SizeDelta: {x: 200, y: 56.6603}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5654440826359252188
 CanvasRenderer:
@@ -266,12 +266,10 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 76
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Athena
-
-'
+  m_Text: Frigg
