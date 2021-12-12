@@ -6,6 +6,9 @@ public class Tourniquet : MonoBehaviour
 {
 	public float speed = 1f;
 	Rigidbody rb;
+	float innerTime;
+
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -19,7 +22,8 @@ public class Tourniquet : MonoBehaviour
 		}
 		else
 		{
-			int step = ((int)Time.time) / 20 + 1;
+			innerTime += Time.time;
+			int step = ((int)innerTime) / 20 + 1;
 			Vector3 deltaRotation = new Vector3(0, 1, 0) * Time.fixedDeltaTime * speed * step * step;
 
 			rb.angularVelocity = deltaRotation;
