@@ -14,12 +14,11 @@ public class PlayerController : MonoBehaviour
 	public AudioClip audioClip;
 
 	private Slicer slicer;
-	private Quaternion targetQuaternion;
-	private Quaternion initQuaternion;
 	private Vector3 startPos;
 	private Vector2 moveBy;
 	private float curTime = 0.0f;
 	private float playerHeight = 0.2f;
+	private Vector3 positionWhenCut;
 	static int id = 0;
 
 	public void OnEnable() {
@@ -45,10 +44,6 @@ public class PlayerController : MonoBehaviour
 				break;
 		}
 		transform.position = startPos;
-
-		initQuaternion = transform.rotation;
-		targetQuaternion = initQuaternion * Quaternion.AngleAxis (maxAngle, new Vector3(1,0,0));
-
 		id++;
 	}
 
@@ -66,7 +61,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if(cuttingState == 0)
 		{
-			cuttingState = 1; // .
+			cuttingState = 1;
+			positionWhenCut = transform.position;
 		}
 	}
 
@@ -90,32 +86,32 @@ public class PlayerController : MonoBehaviour
 	{
 		if (cuttingState == 0 || canMoveOnCut)
 			updatePos();
+
+		// cutting
 		if (cuttingState > 0) {
-			// Convert the X angle target into a quaternion: to maxAngle or initialAngle
-			Quaternion from;
-			Quaternion to;
-			// Dampen towards the target rotation
+			// Dampen towards the target position
+			Vector3 from;
+			Vector3 to;
 			curTime += Time.deltaTime;
 			float t = curTime / animationTime;
-
 
 			// cutting down
 			if(cuttingState == 1)
 			{
 				slicer.isSharp = true;
-				from = initQuaternion;
-				to = targetQuaternion;
+				from = positionWhenCut;
+				to = new Vector3(positionWhenCut.x, 0, positionWhenCut.z);
 			}
 			// goind back up
 			else
 			{
 				slicer.isSharp = false;
-				from = targetQuaternion;
-				to = initQuaternion;
+				from = new Vector3(positionWhenCut.x, 0, positionWhenCut.z);
+				to = positionWhenCut;
 			}
 
-			Quaternion deltaRotation = Quaternion.Slerp(from, to, t);
-			GetComponent<Rigidbody>().MoveRotation(deltaRotation);
+			Vector3 targetPosition = Vector3.Lerp(from, to, t);
+			GetComponent<Rigidbody>().position = targetPosition;
 
 			if (t > 1.0f)
 			{

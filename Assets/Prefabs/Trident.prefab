@@ -49,8 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.01
   maxAngle: 40
-  animationTime: 0.3
+  animationTime: 0.15
   cuttingState: 0
+  canMoveOnCut: 0
   audioClip: {fileID: 8300000, guid: 7a6b599c10c581349bf50df4b3a519b9, type: 3}
 --- !u!114 &2545859757844449331
 MonoBehaviour:
@@ -208,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crossSectionMaterial: {fileID: 2100000, guid: 0b6f1dc75ef6b0544b0879ba84a6afd3, type: 2}
   thrust: 20
-  waitingTime: 0.3
+  waitingTime: 0.15
   minCuttableVolume: 0.01
   minMass: 0.02
   isSharp: 1
