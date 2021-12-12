@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
 	public static int[] playersScores = new int[] {0,0,0,0};
 	public Text timerText;
 	public float gameTime = 60f;
+	public bool scoreBasedOnVolume = true;
 	AudioSource fxSound; 
 
 	void Start ()

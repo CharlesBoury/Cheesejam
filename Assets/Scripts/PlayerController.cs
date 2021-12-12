@@ -101,14 +101,24 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void releaseHold() {
+
 		foreach (Cheese child in GetComponentsInChildren<Cheese>())
 		{
 			Vector2 pos2D = new Vector2(child.transform.position.x, child.transform.position.z);
 			float distToBase = Vector2.Distance(pos2D, basePos);
 
-			if(distToBase < baseThreshold)
+			if (distToBase < baseThreshold)
 			{
-				GameManager.Instance.AddScore(1, id);
+				int score;
+				if (GameManager.Instance.scoreBasedOnVolume) {
+					Debug.Log(child.scorePerVolume);
+					Debug.Log(Utils.GetVolume(child.gameObject));
+					score = (int)(child.scorePerVolume * Utils.GetVolume(child.gameObject));
+					Debug.Log(score);
+				}
+				else
+					score = 1;
+				GameManager.Instance.AddScore(score, id);
 				Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
 				// freeze position but not rotation
 				rb.constraints = RigidbodyConstraints.FreezePosition;

@@ -8,6 +8,7 @@ public class Cheese : MonoBehaviour
 	public float density = 1f;
 	public bool cuttable = true;
 	public bool pickable = false;
+	public float scorePerVolume = 0.1f;
 	public float minCuttableVolume = 10f; // in cm3
 	public float maxPickableVolume = 400f; // in cm3
 
@@ -45,6 +46,7 @@ public class Cheese : MonoBehaviour
 		hardness = originalCheese.hardness;
 		density = originalCheese.density;
 		fallAudio = originalCheese.fallAudio;
+		scorePerVolume = originalCheese.scorePerVolume;
 		crossSectionMaterial = originalCheese.crossSectionMaterial;
 		//Debug.Log(volume);
 		// Check if cuttable
