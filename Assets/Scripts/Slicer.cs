@@ -13,7 +13,6 @@ public class Slicer : MonoBehaviour
 
 	public float thrust = 10f;
 	public float waitingTime = 0.5f;
-	public float minCuttableVolume = 10f; // in cm3
 	public float minMass = 0.1f;
 	public bool isSharp = false;
 	float timer = 0;
@@ -55,6 +54,10 @@ public class Slicer : MonoBehaviour
 			slice.AddComponent<Rigidbody>();
 			Rigidbody rb = slice.GetComponent<Rigidbody>();
 
+			// Each slice is a cheese
+			slice.AddComponent<Cheese>();
+			Cheese newCheese = slice.GetComponent<Cheese>();
+
 			// Compute volume and mass
 			float volume = Utils.GetVolume(slice);
 			rb.mass = volume * originalCheese.density / 1000.0f;
@@ -62,9 +65,8 @@ public class Slicer : MonoBehaviour
 				rb.mass = minMass;
 			}
 			
-			// Add cheese properties to slices
-			slice.AddComponent<Cheese>();
-			updateNewCheese(slice.GetComponent<Cheese>(), originalCheese, volume);
+			// inherit cheese properties to slices, and check volume
+			newCheese.inheritCheeseProperties(originalCheese, volume);
 
 			// Thrust!
 			rb.AddForce(transform.up * thrust * sign);
@@ -73,17 +75,6 @@ public class Slicer : MonoBehaviour
 		Destroy(go);
 	}
 
-	private void updateNewCheese(Cheese newCheese, Cheese originalCheese, float volume) 
-	{
-		newCheese.hardness = originalCheese.hardness;
-		newCheese.density = originalCheese.density;
-		newCheese.fallAudio = originalCheese.fallAudio;
-		newCheese.crossSectionMaterial = originalCheese.crossSectionMaterial;
-		newCheese.pickable = true;
-		if(volume > minCuttableVolume) {
-			newCheese.cuttable = true;
-		}
-	}
 
 	private void	PickThing(GameObject go)
     {
