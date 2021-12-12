@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buchette
       objectReference: {fileID: 0}
+    - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: scorePerVolume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}

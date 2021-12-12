@@ -111,10 +111,7 @@ public class PlayerController : MonoBehaviour
 			{
 				int score;
 				if (GameManager.Instance.scoreBasedOnVolume) {
-					Debug.Log(child.scorePerVolume);
-					Debug.Log(Utils.GetVolume(child.gameObject));
 					score = (int)(child.scorePerVolume * Utils.GetVolume(child.gameObject));
-					Debug.Log(score);
 				}
 				else
 					score = 1;

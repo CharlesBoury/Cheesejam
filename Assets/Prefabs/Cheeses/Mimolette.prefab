@@ -76,6 +76,10 @@ PrefabInstance:
       value: Mimolette
       objectReference: {fileID: 0}
     - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: scorePerVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
       propertyPath: crossSectionMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 58f7685116e7b4c47a20312a38e07c64, type: 2}

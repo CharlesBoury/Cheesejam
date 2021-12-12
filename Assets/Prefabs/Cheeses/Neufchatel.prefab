@@ -68,6 +68,10 @@ PrefabInstance:
       value: Neufchatel
       objectReference: {fileID: 0}
     - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
+      propertyPath: scorePerVolume
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8593087625419508927, guid: 5cad4d7964c9248adaee47fb8e2842b8, type: 3}
       propertyPath: crossSectionMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 708d1af09685ca245a470b643db68ce5, type: 2}
