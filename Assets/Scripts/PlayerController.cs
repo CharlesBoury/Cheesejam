@@ -11,6 +11,7 @@ public enum State
 	Picking_Down,
 	Picking_Up,
 	Holding,
+	Going_Back,
 };
 
 public class PlayerController : MonoBehaviour
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
 				transform.Rotate(0f, 135f, 0f);
 				break;
 			case 1:
-				startPos = new Vector3(0.25f, playerHeight, 0.2f);
+				startPos = new Vector3(0.15f, playerHeight, 0.2f);
 				basePos = new Vector2(assietteCoordonnee, assietteCoordonnee);
 				transform.Rotate(0f, -135f, 0f);
 				break;
@@ -92,32 +93,51 @@ public class PlayerController : MonoBehaviour
 			state = State.Picking_Up;
 			timer = Mathf.Max(timer, 0.5f);
 			positionWhenPick = transform.position;
-			foreach (Cheese child in GetComponentsInChildren<Cheese>())
+			releaseHold();
+		}
+	}
+
+	public void releaseHold() {
+		foreach (Cheese child in GetComponentsInChildren<Cheese>())
+		{
+			Vector2 pos2D = new Vector2(child.transform.position.x, child.transform.position.z);
+			float distToBase = Vector2.Distance(pos2D, basePos);
+
+			if(distToBase < baseThreshold)
 			{
-				Vector2 pos2D = new Vector2(child.transform.position.x, child.transform.position.z);
-				float distToBase = Vector2.Distance(pos2D, basePos);
+				GameManager.Instance.AddScore(1, id);
+				Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
+				// freeze position but not rotation
+				rb.constraints = RigidbodyConstraints.FreezePosition;
+				child.cuttable = false;
+				child.pickable = false;
 
-				if(distToBase < baseThreshold)
-				{
-					GameManager.Instance.AddScore(1, id);
-					Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
-					// freeze position but not rotation
-					rb.constraints = RigidbodyConstraints.FreezePosition;
-					child.cuttable = false;
-					child.pickable = false;
-
-					CheeseSpawner cheeseSpawner = GameManager.Instance.GetComponent<CheeseSpawner>();
-					cheeseSpawner.OnRemoveCheese(child.gameObject);
-				} else {
-					// release the beast
-					Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
-					rb.constraints = RigidbodyConstraints.None;
-				}
-				child.transform.SetParent(null);
+				CheeseSpawner cheeseSpawner = GameManager.Instance.GetComponent<CheeseSpawner>();
+				cheeseSpawner.OnRemoveCheese(child.gameObject);
+			} else {
+				// release the beast
+				Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
+				rb.constraints = RigidbodyConstraints.None;
 			}
 			moveSpeed = defaultMoveSpeed;
+			child.transform.SetParent(null);
 		}
+	}
 
+	public void playerCollide()
+	{
+		if(state == State.Going_Back || state == State.Picking_Up) {
+			return;
+		}
+		if(state == State.Holding) {
+			timer = Mathf.Max(timer, 0.5f);
+			positionWhenPick = transform.position;
+			state = State.Picking_Up;
+			releaseHold();
+		}
+		Debug.Log("starting Collision "+id+ " state: "+state);
+		state = State.Going_Back;
+		timer = 0.3f;
 	}
 
 	public void OnMove(InputValue value)
@@ -165,6 +185,12 @@ public class PlayerController : MonoBehaviour
 			updatePos(state != State.Holding);
 		}
 
+		if (state == State.Going_Back) {
+			if(timer < 0.01f) {
+				Debug.Log("finished collision");
+				state = State.Moving;
+			}
+		}
 		if (state == State.Cutting_Down || state == State.Cutting_Up)
 		{
 			// Dampen towards the target position

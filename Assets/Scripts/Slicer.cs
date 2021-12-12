@@ -20,6 +20,7 @@ public class Slicer : MonoBehaviour
 	public bool hasSliced = false;
 
 	public List<AudioClip> sliceSounds = new List<AudioClip>();
+	public AudioClip collideSound;
 
 	void Update()
 	{
@@ -46,7 +47,7 @@ public class Slicer : MonoBehaviour
 		int index = Random.Range(0, sliceSounds.Count);
 		AudioSource.PlayClipAtPoint(sliceSounds[index], transform.position, 1.0f);
 		// Loop over slices: first slice has positive thrust, second negative
-		float sign=1.0f; 
+		float sign=1.0f;
 		foreach(GameObject slice in slices)
 		{
 			slice.AddComponent<MeshCollider>();
@@ -65,7 +66,7 @@ public class Slicer : MonoBehaviour
 			if(rb.mass < minMass) {
 				rb.mass = minMass;
 			}
-			
+
 			// inherit cheese properties to slices, and check volume
 			newCheese.inheritCheeseProperties(originalCheese, volume);
 
@@ -91,14 +92,25 @@ public class Slicer : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		Cheese cheese = other.GetComponent<Cheese>();
-		if (!cheese)
+		if (!cheese) {
+			if(other.tag == "Player") {
+				GameObject og = other.gameObject;
+				GameObject otherTrident = og.transform.parent.gameObject;
+				PlayerController otherPc = otherTrident.GetComponent<PlayerController>();
+				Debug.Log("colliding with player: " + otherPc.id);
+				otherPc.playerCollide();
+				GameObject thisTrident = transform.parent.gameObject;
+				PlayerController thisPc = otherTrident.GetComponent<PlayerController>();
+				thisPc.playerCollide();
+			}
 			return;
+		}
 		if (isSharp && timer <= 0.01f)
 		{
 			if (cheese.cuttable) {
 				SliceThing(other.gameObject);
 				DisableSliceFor(waitingTime);
-			} 
+			}
 		}
 		if (isSharp && !cheese.cuttable) {
 			Rigidbody rb = other.GetComponent<Rigidbody>();
