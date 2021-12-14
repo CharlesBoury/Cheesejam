@@ -14,5 +14,5 @@ Move with `Left Joystick` or `Mouse`.
 
 Cut with `A` or `Left Click`.
 
-Grab with `X` or `Right Click`. Release buy pressing the button again.
+Grab with `X` or `Right Click`. Release by pressing the button again.
 
